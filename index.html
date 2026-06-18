@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Miss Raynelle | Gender Advocate · Political Analyst · Writer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Merriweather+Sans:wght@400;500;700;800&family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { font-family: 'Assistant', system-ui, sans-serif; color: #16181f; background: #faf8f4; line-height: 1.65; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; }
+button { background: none; border: none; cursor: pointer; font-family: inherit; }
+
+@keyframes mrFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ── HEADER ── */
+#mr-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 80px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.25rem, 5vw, 5.5rem);
+  color: #ffffff;
+  border-bottom: 1px solid transparent;
+  transition: background .35s cubic-bezier(.25,.1,.25,1), color .35s cubic-bezier(.25,.1,.25,1), border-color .35s, backdrop-filter .35s;
+}
+#mr-header.scrolled {
+  background: rgba(250,248,244,.88);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  color: #16181f;
+  border-bottom-color: #e7e5e0;
+}
+.mr-logo {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 800; font-size: 1.12rem; letter-spacing: .18em; color: inherit;
+}
+#mr-nav-links { display: flex; gap: 1.9rem; align-items: center; }
+.mr-nav-link {
+  color: inherit; font-size: .82rem; letter-spacing: .04em;
+  transition: opacity .2s;
+}
+.mr-nav-link:hover { opacity: .65; }
+#mr-header-cta {
+  font-size: .74rem; letter-spacing: .12em; text-transform: uppercase;
+  border: 1px solid currentColor; padding: .62rem 1.15rem; color: inherit;
+  transition: background .25s, color .25s;
+}
+#mr-header-cta:hover { background: #ffffff; color: #1d2533; }
+#mr-hamburger {
+  display: none; place-items: center; width: 42px; height: 42px; color: inherit;
+}
+
+/* ── MOBILE DRAWER ── */
+#mr-drawer { position: fixed; inset: 0; z-index: 200; pointer-events: none; }
+#mr-scrim {
+  position: absolute; inset: 0; background: rgba(22,24,31,.4);
+  opacity: 0; transition: opacity .3s;
+}
+#mr-drawer-panel {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: min(82vw, 360px); background: #faf8f4;
+  padding: 5.5rem 2rem 2rem;
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.25,.1,.25,1);
+  display: flex; flex-direction: column; gap: .2rem;
+}
+#mr-drawer.open { pointer-events: auto; }
+#mr-drawer.open #mr-scrim { opacity: 1; }
+#mr-drawer.open #mr-drawer-panel { transform: none; }
+#mr-drawer-close {
+  position: absolute; top: 1.4rem; right: 1.4rem;
+  width: 40px; height: 40px; display: grid; place-items: center;
+}
+.mr-drawer-link {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-size: 1.35rem; font-weight: 700; padding: .75rem 0;
+  border-bottom: 1px solid #e7e5e0; color: #16181f;
+}
+.mr-drawer-link:last-child { border-bottom: none; }
+
+/* ── HERO ── */
+#home {
+  position: relative; min-height: 100svh;
+  background: linear-gradient(160deg, #2a3344 0%, #1d2533 100%);
+}
+#mr-hero-grid {
+  display: grid; grid-template-columns: 1.05fr .95fr; min-height: 100svh; align-items: stretch;
+}
+#mr-hero-text {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 7rem clamp(1.25rem, 5vw, 5.5rem) 4rem;
+  color: #ffffff; position: relative; z-index: 2;
+}
+.mr-hero-eyebrow {
+  opacity: 0; transform: translateY(16px);
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.62); margin-bottom: 1.6rem;
+  transition: opacity .9s cubic-bezier(.25,.1,.25,1) .15s, transform .9s cubic-bezier(.25,.1,.25,1) .15s;
+}
+.mr-hero-name {
+  opacity: 0; transform: translateY(20px);
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 800; font-size: clamp(3.2rem, 7vw, 5.4rem);
+  line-height: .98; letter-spacing: .005em; margin-bottom: 1.6rem;
+  transition: opacity .9s cubic-bezier(.25,.1,.25,1) .28s, transform .9s cubic-bezier(.25,.1,.25,1) .28s;
+}
+.mr-hero-head {
+  opacity: 0; transform: translateY(20px);
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 500; font-size: clamp(1.15rem, 1.9vw, 1.5rem);
+  line-height: 1.3; color: rgba(255,255,255,.92); max-width: 22ch; margin-bottom: 1.4rem;
+  transition: opacity .9s cubic-bezier(.25,.1,.25,1) .41s, transform .9s cubic-bezier(.25,.1,.25,1) .41s;
+}
+.mr-hero-sub {
+  opacity: 0; transform: translateY(20px);
+  font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,.72);
+  max-width: 46ch; margin-bottom: 2.4rem;
+  transition: opacity .9s cubic-bezier(.25,.1,.25,1) .54s, transform .9s cubic-bezier(.25,.1,.25,1) .54s;
+}
+.mr-hero-cta {
+  opacity: 0; transform: translateY(20px);
+  display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+  transition: opacity .9s cubic-bezier(.25,.1,.25,1) .67s, transform .9s cubic-bezier(.25,.1,.25,1) .67s;
+}
+.hero-entered .mr-hero-eyebrow,
+.hero-entered .mr-hero-name,
+.hero-entered .mr-hero-head,
+.hero-entered .mr-hero-sub,
+.hero-entered .mr-hero-cta {
+  opacity: 1; transform: none;
+}
+.mr-cta-primary {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: #ffffff; color: #1d2533;
+  font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: .95rem 1.7rem;
+  transition: transform .25s, background .25s;
+}
+.mr-cta-primary:hover { transform: translateY(-4px); background: #f1ece3; }
+.mr-cta-ghost {
+  display: inline-flex; align-items: center; color: #fff;
+  font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: .4rem 0; border-bottom: 1px solid rgba(255,255,255,.5);
+  transition: opacity .2s;
+}
+.mr-cta-ghost:hover { opacity: .7; }
+#mr-hero-photo {
+  position: relative; overflow: hidden; min-height: 100svh; background: #222a38;
+}
+#mr-hero-img {
+  position: absolute; inset: -8% 0 0 0;
+  width: 100%; height: 116%;
+  object-fit: cover; object-position: 50% 22%;
+  will-change: transform;
+}
+.mr-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(29,37,51,.85) 0%, rgba(29,37,51,.12) 26%, rgba(29,37,51,0) 55%),
+              linear-gradient(0deg, rgba(29,37,51,.5) 0%, rgba(29,37,51,0) 30%);
+  pointer-events: none;
+}
+#mr-vert {
+  position: absolute; left: 1.6rem; bottom: 2.4rem;
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .7rem; letter-spacing: .42em; text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+}
+.mr-scroll-cue {
+  position: absolute; left: 50%; bottom: 1.6rem;
+  transform: translateX(-50%); z-index: 3;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  color: rgba(255,255,255,.5);
+}
+.mr-scroll-label {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .6rem; letter-spacing: .3em; text-transform: uppercase;
+}
+.mr-scroll-line {
+  width: 1px; height: 34px;
+  background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,0));
+  animation: mrFloat 2.4s ease-in-out infinite;
+}
+
+/* ── REVEAL ── */
+[data-reveal] {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.25,.1,.25,1), transform .8s cubic-bezier(.25,.1,.25,1);
+  will-change: opacity, transform;
+}
+[data-reveal].revealed { opacity: 1; transform: none; }
+
+/* ── ABOUT ── */
+#about {
+  scroll-margin-top: 80px; background: #ffffff;
+  padding: clamp(5rem, 12vh, 9rem) clamp(1.25rem, 5vw, 5.5rem);
+}
+#mr-about-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: .85fr 1.15fr;
+  gap: clamp(2.5rem, 5vw, 5rem); align-items: center;
+}
+.mr-about-photo-wrap {
+  position: relative;
+}
+.mr-about-photo-frame {
+  aspect-ratio: 4/5; overflow: hidden; background: #f1ece3; border: 1px solid #e7e5e0;
+}
+.mr-about-photo-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 18%;
+  filter: grayscale(.18) contrast(1.02);
+}
+.mr-about-badge {
+  position: absolute; bottom: -1px; right: -1px;
+  background: #2a3344; color: #fff;
+  padding: 1.1rem 1.4rem; max-width: 62%;
+}
+.mr-about-badge-label {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.6); margin-bottom: .35rem;
+}
+.mr-about-badge-title {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700; font-size: .95rem; letter-spacing: .04em;
+}
+.mr-section-eyebrow {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: #8a8e98; margin-bottom: 1.2rem;
+}
+.mr-about-h2 {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700; font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  line-height: 1.12; margin-bottom: 1.6rem;
+}
+.mr-body-text { color: #4c515d; font-size: 1.05rem; line-height: 1.75; margin-bottom: 1.2rem; }
+.mr-sig-row { display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; margin-top: .8rem; }
+.mr-sig-name {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 800; font-style: italic; font-size: 1.5rem;
+  color: #2a3344; letter-spacing: .01em;
+}
+.mr-sig-divider { width: 46px; height: 1px; background: #d9d6cf; }
+.mr-sig-role { font-size: .85rem; color: #8a8e98; }
+
+/* ── QUOTE ── */
+#mr-quote {
+  background: #f1ece3;
+  padding: clamp(5rem, 12vh, 8.5rem) clamp(1.25rem, 5vw, 5.5rem);
+}
+#mr-quote figure { max-width: 1000px; margin: 0 auto; text-align: center; }
+.mr-quote-mark {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 800; font-size: 4rem; line-height: 1;
+  color: #cdbba4; margin-bottom: .5rem;
+}
+.mr-quote-text {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 500; font-size: clamp(1.6rem, 3.6vw, 2.7rem);
+  line-height: 1.28; letter-spacing: .005em; color: #16181f; margin-bottom: 1.8rem;
+}
+.mr-quote-caption {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: #8a8e98;
+}
+
+/* ── IMPACT ── */
+#impact {
+  scroll-margin-top: 80px; background: #ffffff;
+  padding: clamp(5rem, 12vh, 9rem) clamp(1.25rem, 5vw, 5.5rem);
+}
+.mr-impact-inner { max-width: 1200px; margin: 0 auto; }
+.mr-section-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap; margin-bottom: clamp(2.5rem, 5vh, 3.5rem);
+}
+.mr-section-h2 {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 2.7rem); line-height: 1.12;
+}
+.mr-section-desc { color: #4c515d; font-size: 1rem; line-height: 1.7; max-width: 34ch; }
+#mr-impact-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: #e7e5e0; border: 1px solid #e7e5e0;
+}
+.mr-impact-card {
+  background: #ffffff; padding: 2.2rem 1.8rem;
+  display: flex; flex-direction: column; gap: 1rem; min-height: 300px;
+  transition: background .3s;
+}
+.mr-impact-card:hover { background: #faf8f4; }
+.mr-card-num {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .72rem; letter-spacing: .16em; color: #cdbba4;
+}
+.mr-card-h3 {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700; font-size: 1.22rem; line-height: 1.2;
+}
+.mr-card-p { color: #4c515d; font-size: .95rem; line-height: 1.7; margin-top: auto; }
+
+/* ── FOUNDATION ── */
+#foundation {
+  scroll-margin-top: 80px;
+  background: linear-gradient(160deg, #2a3344 0%, #1d2533 100%);
+  color: #fff;
+  padding: clamp(5rem, 13vh, 9.5rem) clamp(1.25rem, 5vw, 5.5rem);
+}
+#mr-foundation-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem); align-items: start;
+}
+.mr-foundation-eyebrow {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); margin-bottom: 1.2rem;
+}
+.mr-foundation-h2 {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 800; font-size: clamp(2rem, 4.4vw, 3.2rem);
+  line-height: 1.05; letter-spacing: .01em; margin-bottom: 1.6rem;
+}
+.mr-foundation-p {
+  color: rgba(255,255,255,.78); font-size: 1.08rem;
+  line-height: 1.75; margin-bottom: 2.2rem; max-width: 42ch;
+}
+.mr-cta-light {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: #fff; color: #1d2533;
+  font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: .95rem 1.7rem;
+  transition: transform .25s, background .25s;
+}
+.mr-cta-light:hover { transform: translateY(-4px); background: #f1ece3; }
+.mr-programs {
+  display: flex; flex-direction: column; gap: 1px;
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.14);
+}
+.mr-program {
+  background: #212a39; padding: 1.7rem 1.6rem;
+}
+.mr-program-label {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .66rem; letter-spacing: .16em; color: rgba(255,255,255,.45); margin-bottom: .5rem;
+}
+.mr-program-h3 {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700; font-size: 1.12rem; margin-bottom: .45rem;
+}
+.mr-program-p { color: rgba(255,255,255,.7); font-size: .92rem; line-height: 1.65; }
+
+/* ── STATS ── */
+#mr-stats {
+  background: #faf8f4;
+  padding: clamp(4rem, 9vh, 6.5rem) clamp(1.25rem, 5vw, 5.5rem);
+  border-bottom: 1px solid #e7e5e0;
+}
+.mr-stats-inner { max-width: 1200px; margin: 0 auto; }
+.mr-stats-eyebrow {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: #8a8e98; margin-bottom: 2.4rem; text-align: center;
+}
+#mr-stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.mr-stat-item { text-align: center; }
+.mr-stat-num {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 800; font-size: clamp(2.6rem, 5vw, 3.6rem);
+  line-height: 1; color: #2a3344; letter-spacing: .01em;
+}
+.mr-stat-label { margin-top: .7rem; font-size: .9rem; letter-spacing: .04em; color: #4c515d; }
+
+/* ── INSIGHTS ── */
+#insights {
+  scroll-margin-top: 80px; background: #ffffff;
+  padding: clamp(5rem, 12vh, 9rem) clamp(1.25rem, 5vw, 5.5rem);
+}
+.mr-insights-inner { max-width: 1200px; margin: 0 auto; }
+.mr-all-link {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+  color: #4c515d; display: inline-flex; align-items: center; gap: .5rem;
+  transition: gap .25s, color .25s;
+}
+.mr-all-link:hover { gap: .85rem; color: #16181f; }
+#mr-insights-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+.mr-article { cursor: pointer; }
+.mr-article-thumb {
+  aspect-ratio: 4/3; overflow: hidden; border: 1px solid #e7e5e0;
+  margin-bottom: 1.2rem;
+  display: flex; align-items: flex-end; padding: 1.4rem;
+}
+.mr-article-num {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 800; font-size: 2.6rem; line-height: .9;
+}
+.mr-article-meta {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .66rem; letter-spacing: .18em; text-transform: uppercase;
+  color: #8a8e98; margin-bottom: .7rem;
+}
+.mr-article-title {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700; font-size: 1.28rem; line-height: 1.25;
+  transition: color .25s; color: #16181f;
+}
+.mr-article:hover .mr-article-title { color: #2a3344; }
+
+/* ── MEDIA ── */
+#media {
+  scroll-margin-top: 80px;
+  background: linear-gradient(160deg, #1d2533 0%, #16181f 100%);
+  color: #fff;
+  padding: clamp(5rem, 12vh, 9rem) clamp(1.25rem, 5vw, 5.5rem);
+}
+.mr-media-inner { max-width: 1200px; margin: 0 auto; }
+.mr-media-header { text-align: center; max-width: 640px; margin: 0 auto clamp(2.5rem, 5vh, 3.5rem); }
+.mr-media-eyebrow {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.5); margin-bottom: 1.1rem;
+}
+.mr-media-h2 {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700; font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+  line-height: 1.12; margin-bottom: 1.2rem;
+}
+.mr-media-p { color: rgba(255,255,255,.72); font-size: 1.05rem; line-height: 1.7; }
+.mr-media-feature { position: relative; border: 1px solid rgba(255,255,255,.16); }
+.mr-media-poster {
+  display: block; width: 100%; aspect-ratio: 16/7;
+  object-fit: cover; object-position: 50% 22%;
+}
+.mr-media-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(22,24,31,.78) 0%, rgba(22,24,31,.12) 55%, rgba(22,24,31,.35) 100%);
+  pointer-events: none;
+}
+#mr-play {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 84px; height: 84px; border-radius: 50%;
+  background: rgba(255,255,255,.95); display: grid; place-items: center;
+  color: #1d2533; transition: transform .25s, opacity .25s;
+}
+#mr-play:hover { transform: translate(-50%, -50%) scale(1.08); }
+.mr-media-caption {
+  position: absolute; left: 1.6rem; bottom: 1.4rem; right: 1.6rem;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap; pointer-events: none;
+}
+.mr-media-caption-label {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .64rem; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(255,255,255,.6); margin-bottom: .4rem;
+}
+.mr-media-caption-title {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700; font-size: 1.25rem;
+}
+.mr-media-tags {
+  display: flex; gap: 2.5rem; flex-wrap: wrap; justify-content: center;
+  margin-top: 2.4rem;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+}
+
+/* ── CONTACT ── */
+#contact {
+  scroll-margin-top: 80px; background: #ffffff;
+  padding: clamp(5rem, 12vh, 9rem) clamp(1.25rem, 5vw, 5.5rem);
+}
+#mr-contact-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: .9fr 1.1fr;
+  gap: clamp(2.5rem, 5vw, 5rem); align-items: start;
+}
+.mr-contact-eyebrow {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: #8a8e98; margin-bottom: 1.2rem;
+}
+.mr-contact-h2 {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700; font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+  line-height: 1.12; margin-bottom: 1.4rem;
+}
+.mr-contact-p { color: #4c515d; font-size: 1.05rem; line-height: 1.75; margin-bottom: 2rem; max-width: 38ch; }
+.mr-contact-details { display: flex; flex-direction: column; gap: 1rem; }
+.mr-contact-detail { display: flex; align-items: center; gap: .8rem; color: #4c515d; font-size: .95rem; }
+#mr-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.mr-field { display: flex; flex-direction: column; gap: .5rem; }
+.mr-field.full { grid-column: 1 / -1; }
+.mr-label {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: #8a8e98;
+}
+.mr-input, .mr-textarea {
+  font-family: 'Assistant', sans-serif; font-size: .95rem;
+  padding: .85rem .9rem; border: 1px solid #d9d6cf;
+  background: #faf8f4; color: #16181f; outline: none;
+  transition: border-color .25s;
+}
+.mr-input:focus, .mr-textarea:focus { border-color: #2a3344; }
+.mr-textarea { resize: vertical; }
+#mr-submit {
+  grid-column: 1 / -1; justify-self: start;
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: #2a3344; color: #fff;
+  font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: .95rem 1.9rem;
+  transition: transform .25s, background .25s;
+}
+#mr-submit:hover { transform: translateY(-4px); background: #1d2533; }
+#mr-submit.sent { background: #1d2533; }
+
+/* ── FOOTER ── */
+footer {
+  background: #faf8f4; border-top: 1px solid #e7e5e0;
+  padding: clamp(3.5rem, 7vh, 5rem) clamp(1.25rem, 5vw, 5.5rem) 2rem;
+}
+.mr-footer-inner { max-width: 1200px; margin: 0 auto; }
+.mr-footer-top {
+  display: flex; flex-wrap: wrap; justify-content: space-between;
+  gap: 2.5rem; padding-bottom: clamp(2rem, 5vh, 3rem);
+}
+.mr-footer-brand { max-width: 32ch; }
+.mr-footer-logo {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 800; font-size: 1.18rem; letter-spacing: .16em; margin-bottom: .4rem;
+}
+.mr-footer-tagline { color: #8a8e98; font-size: .84rem; letter-spacing: .06em; }
+.mr-footer-org { color: #4c515d; font-size: .86rem; margin-top: 1rem; }
+.mr-footer-links { display: flex; flex-wrap: wrap; gap: clamp(2.5rem, 6vw, 5rem); }
+.mr-footer-col-label {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: .66rem; letter-spacing: .18em; text-transform: uppercase;
+  color: #8a8e98; font-weight: 400; margin-bottom: 1rem;
+}
+.mr-footer-nav { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+.mr-footer-nav a { font-size: .86rem; color: #4c515d; transition: color .2s; }
+.mr-footer-nav a:hover { color: #16181f; }
+.mr-footer-bottom {
+  border-top: 1px solid #e7e5e0; padding-top: 1.6rem;
+  display: flex; flex-wrap: wrap; justify-content: space-between;
+  gap: 1rem; font-size: .78rem; color: #8a8e98;
+}
+.mr-footer-mark { font-family: 'Anonymous Pro', monospace; letter-spacing: .1em; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 980px) {
+  #mr-nav-links { display: none !important; }
+  #mr-hamburger { display: inline-grid !important; }
+  #mr-hero-grid { grid-template-columns: 1fr !important; }
+  #mr-hero-photo { min-height: 56vh !important; order: -1 !important; }
+  #mr-hero-text { padding: 2.5rem clamp(1.25rem, 5vw, 5.5rem) 3.5rem !important; }
+  #mr-vert { display: none !important; }
+  #mr-about-grid, #mr-foundation-grid, #mr-contact-grid { grid-template-columns: 1fr !important; }
+  #mr-impact-grid { grid-template-columns: 1fr 1fr !important; }
+  #mr-insights-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 600px) {
+  #mr-impact-grid, #mr-stats-grid { grid-template-columns: 1fr !important; }
+  #mr-form { grid-template-columns: 1fr !important; }
+  #mr-submit { grid-column: 1 !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="mr-header">
+  <a href="#home" class="mr-logo">MISS&nbsp;RAYNELLE</a>
+  <nav id="mr-nav-links">
+    <a href="#about" class="mr-nav-link">About</a>
+    <a href="#impact" class="mr-nav-link">Advocacy</a>
+    <a href="#insights" class="mr-nav-link">Insights</a>
+    <a href="#foundation" class="mr-nav-link">Foundation</a>
+    <a href="#media" class="mr-nav-link">Media</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <a href="#contact" id="mr-header-cta">Contact</a>
+    <button id="mr-hamburger" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mr-drawer">
+  <div id="mr-scrim"></div>
+  <div id="mr-drawer-panel">
+    <button id="mr-drawer-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#16181f" stroke-width="1.5">
+        <line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/>
+      </svg>
+    </button>
+    <a href="#about" class="mr-drawer-link">About</a>
+    <a href="#impact" class="mr-drawer-link">Advocacy</a>
+    <a href="#insights" class="mr-drawer-link">Insights</a>
+    <a href="#foundation" class="mr-drawer-link">Foundation</a>
+    <a href="#media" class="mr-drawer-link">Media</a>
+    <a href="#contact" class="mr-drawer-link">Contact</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div id="mr-hero-grid">
+    <div id="mr-hero-text">
+      <div class="mr-hero-eyebrow">Gender Advocate · Political Analyst · Writer</div>
+      <h1 class="mr-hero-name">Miss<br>Raynelle</h1>
+      <p class="mr-hero-head">Championing equality. Influencing policy. Empowering women.</p>
+      <p class="mr-hero-sub">Through advocacy, political analysis, and community leadership, Miss Raynelle drives the conversations that move equity forward, and turns them into policy, programs, and progress.</p>
+      <div class="mr-hero-cta">
+        <a href="#impact" class="mr-cta-primary">
+          Explore my work
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+        </a>
+        <a href="#foundation" class="mr-cta-ghost">The Foundation</a>
+      </div>
+    </div>
+    <div id="mr-hero-photo">
+      <img id="mr-hero-img" src="project/assets/raynelle-portrait.jpeg" alt="Miss Raynelle">
+      <div class="mr-hero-overlay"></div>
+      <div id="mr-vert">Voice for Change</div>
+    </div>
+  </div>
+  <div class="mr-scroll-cue">
+    <span class="mr-scroll-label">Scroll</span>
+    <span class="mr-scroll-line"></span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div id="mr-about-grid">
+    <div data-reveal class="mr-about-photo-wrap">
+      <div class="mr-about-photo-frame">
+        <img src="project/assets/raynelle-portrait.jpeg" alt="Miss Raynelle portrait">
+      </div>
+      <div class="mr-about-badge">
+        <div class="mr-about-badge-label">Founder &amp; CEO</div>
+        <div class="mr-about-badge-title">Gutsy Women Foundation</div>
+      </div>
+    </div>
+    <div data-reveal data-reveal-delay="120">
+      <div class="mr-section-eyebrow">About Miss Raynelle</div>
+      <h2 class="mr-about-h2">A voice built for the hard conversations, and the lasting change that follows them.</h2>
+      <p class="mr-body-text">Miss Raynelle is a respected gender advocate, social commentator, political analyst, and writer dedicated to advancing equality and shaping public discourse. Across rooms of power and grassroots gatherings alike, she amplifies women's voices, sharpens policy debate, and models the inclusive leadership she calls for.</p>
+      <p class="mr-body-text" style="margin-bottom:2rem;">Her work moves between the page, the podium, and the policy table, translating sharp analysis into the campaigns, mentorship, and community programs that carry change beyond the headline.</p>
+      <div class="mr-sig-row">
+        <div class="mr-sig-name">Raynelle</div>
+        <span class="mr-sig-divider"></span>
+        <span class="mr-sig-role">Gender Advocate · Writer · Founder</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="mr-quote">
+  <figure data-reveal>
+    <div class="mr-quote-mark">"</div>
+    <blockquote class="mr-quote-text">Real change begins when women are empowered to lead, speak, and transform their communities.</blockquote>
+    <figcaption class="mr-quote-caption">Miss Raynelle</figcaption>
+  </figure>
+</section>
+
+<!-- AREAS OF IMPACT -->
+<section id="impact">
+  <div class="mr-impact-inner">
+    <div data-reveal class="mr-section-header">
+      <div>
+        <div class="mr-section-eyebrow">Areas of Impact</div>
+        <h2 class="mr-section-h2" style="max-width:18ch;">Where the work lives, and how it moves.</h2>
+      </div>
+      <p class="mr-section-desc">Four disciplines, one through-line: turning conviction into measurable progress for women and girls.</p>
+    </div>
+    <div id="mr-impact-grid">
+      <article data-reveal data-reveal-delay="0" class="mr-impact-card">
+        <div class="mr-card-num">01</div>
+        <h3 class="mr-card-h3">Gender Advocacy</h3>
+        <p class="mr-card-p">Promoting equality, inclusion, and women's rights through strategic, sustained advocacy.</p>
+      </article>
+      <article data-reveal data-reveal-delay="100" class="mr-impact-card">
+        <div class="mr-card-num">02</div>
+        <h3 class="mr-card-h3">Political Analysis</h3>
+        <p class="mr-card-p">Clear-eyed perspective on governance, democracy, and the policy that shapes daily life.</p>
+      </article>
+      <article data-reveal data-reveal-delay="200" class="mr-impact-card">
+        <div class="mr-card-num">03</div>
+        <h3 class="mr-card-h3">Social Commentary</h3>
+        <p class="mr-card-p">Examining the issues that define our moment and opening up the conversations that matter.</p>
+      </article>
+      <article data-reveal data-reveal-delay="300" class="mr-impact-card">
+        <div class="mr-card-num">04</div>
+        <h3 class="mr-card-h3">Writing &amp; Thought Leadership</h3>
+        <p class="mr-card-p">Articles, opinion, and research-driven insight that set the terms of the debate.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDATION -->
+<section id="foundation">
+  <div id="mr-foundation-grid">
+    <div data-reveal>
+      <div class="mr-foundation-eyebrow">Founder &amp; CEO</div>
+      <h2 class="mr-foundation-h2">Gutsy Women Foundation</h2>
+      <p class="mr-foundation-p">Empowering women and girls through leadership development, advocacy, mentorship, and community transformation, building the next generation of women bold enough to lead.</p>
+      <a href="#contact" class="mr-cta-light">
+        Support the mission
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+      </a>
+    </div>
+    <div data-reveal data-reveal-delay="140" class="mr-programs">
+      <div class="mr-program">
+        <div class="mr-program-label">01 · Leadership Development</div>
+        <h3 class="mr-program-h3">Building future women leaders</h3>
+        <p class="mr-program-p">Training, fellowships, and platforms that put women in the rooms where decisions are made.</p>
+      </div>
+      <div class="mr-program">
+        <div class="mr-program-label">02 · Mentorship Programs</div>
+        <h3 class="mr-program-h3">Supporting growth, one woman at a time</h3>
+        <p class="mr-program-p">Pairing emerging leaders with mentors who open doors and sharpen ambition.</p>
+      </div>
+      <div class="mr-program">
+        <div class="mr-program-label">03 · Community Outreach</div>
+        <h3 class="mr-program-h3">Grassroots impact and awareness</h3>
+        <p class="mr-program-p">Campaigns and convenings that meet communities where they are and move them forward.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="mr-stats">
+  <div class="mr-stats-inner">
+    <div data-reveal class="mr-stats-eyebrow">Impact in numbers</div>
+    <div id="mr-stats-grid">
+      <div data-reveal data-reveal-delay="0" class="mr-stat-item">
+        <div class="mr-stat-num" data-count="5000" data-suffix="+">0</div>
+        <div class="mr-stat-label">Women Reached</div>
+      </div>
+      <div data-reveal data-reveal-delay="100" class="mr-stat-item">
+        <div class="mr-stat-num" data-count="50" data-suffix="+">0</div>
+        <div class="mr-stat-label">Speaking Engagements</div>
+      </div>
+      <div data-reveal data-reveal-delay="200" class="mr-stat-item">
+        <div class="mr-stat-num" data-count="100" data-suffix="+">0</div>
+        <div class="mr-stat-label">Published Articles</div>
+      </div>
+      <div data-reveal data-reveal-delay="300" class="mr-stat-item">
+        <div class="mr-stat-num" data-count="10" data-suffix="+">0</div>
+        <div class="mr-stat-label">Advocacy Campaigns</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section id="insights">
+  <div class="mr-insights-inner">
+    <div data-reveal class="mr-section-header">
+      <div>
+        <div class="mr-section-eyebrow">Latest Insights</div>
+        <h2 class="mr-section-h2">Writing &amp; analysis</h2>
+      </div>
+      <a href="#" class="mr-all-link">
+        All articles
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+      </a>
+    </div>
+    <div id="mr-insights-grid">
+      <article data-reveal data-reveal-delay="0" class="mr-article">
+        <div class="mr-article-thumb" style="background:#f1ece3;">
+          <span class="mr-article-num" style="color:#d8cbb8;">01</span>
+        </div>
+        <div class="mr-article-meta">Advocacy · Mar 2026</div>
+        <h3 class="mr-article-title">Women in Leadership: The Next Frontier</h3>
+      </article>
+      <article data-reveal data-reveal-delay="120" class="mr-article">
+        <div class="mr-article-thumb" style="background:#e7ddcf;">
+          <span class="mr-article-num" style="color:#cdbba4;">02</span>
+        </div>
+        <div class="mr-article-meta">Political Analysis · Feb 2026</div>
+        <h3 class="mr-article-title">Understanding Modern Political Dynamics</h3>
+      </article>
+      <article data-reveal data-reveal-delay="240" class="mr-article">
+        <div class="mr-article-thumb" style="background:#f1ece3;">
+          <span class="mr-article-num" style="color:#d8cbb8;">03</span>
+        </div>
+        <div class="mr-article-meta">Social Commentary · Jan 2026</div>
+        <h3 class="mr-article-title">Building Inclusive Communities</h3>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA -->
+<section id="media">
+  <div class="mr-media-inner">
+    <div data-reveal class="mr-media-header">
+      <div class="mr-media-eyebrow">Media &amp; Speaking</div>
+      <h2 class="mr-media-h2">On stage, on air, on the record.</h2>
+      <p class="mr-media-p">Keynotes, panels, broadcast interviews, and podcasts, wherever the conversation on gender and governance is happening.</p>
+    </div>
+    <div data-reveal data-reveal-delay="120" class="mr-media-feature">
+      <img class="mr-media-poster" src="project/assets/raynelle-portrait.jpeg" alt="Miss Raynelle keynote">
+      <div class="mr-media-overlay"></div>
+      <button id="mr-play" aria-label="Play featured video">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><polygon points="8 5 19 12 8 19"/></svg>
+      </button>
+      <div class="mr-media-caption">
+        <div>
+          <div class="mr-media-caption-label">Featured Keynote</div>
+          <div class="mr-media-caption-title">Women in Leadership: The Next Frontier</div>
+        </div>
+      </div>
+    </div>
+    <div class="mr-media-tags">
+      <span>Keynotes</span><span>·</span><span>Panel Discussions</span><span>·</span><span>Podcasts</span><span>·</span><span>Television</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div id="mr-contact-grid">
+    <div data-reveal>
+      <div class="mr-contact-eyebrow">Let's create impact together</div>
+      <h2 class="mr-contact-h2">Start a conversation.</h2>
+      <p class="mr-contact-p">For speaking engagements, partnerships, media inquiries, and collaboration opportunities. Reach out and let's build something that lasts.</p>
+      <div class="mr-contact-details">
+        <div class="mr-contact-detail">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2a3344" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          hello@missraynelle.com
+        </div>
+        <div class="mr-contact-detail">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2a3344" stroke-width="1.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8Z"/></svg>
+          Gutsy Women Foundation · Accra, Ghana
+        </div>
+        <div class="mr-contact-detail">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2a3344" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l2 5v3a1 1 0 0 1-1 1A17 17 0 0 1 4 5a1 1 0 0 1 1-1Z"/></svg>
+          0549094441
+        </div>
+      </div>
+    </div>
+    <form data-reveal data-reveal-delay="120" id="mr-form">
+      <div class="mr-field">
+        <label class="mr-label" for="f-name">Full Name</label>
+        <input class="mr-input" type="text" id="f-name" name="name">
+      </div>
+      <div class="mr-field">
+        <label class="mr-label" for="f-email">Email Address</label>
+        <input class="mr-input" type="email" id="f-email" name="email">
+      </div>
+      <div class="mr-field full">
+        <label class="mr-label" for="f-org">Organization</label>
+        <input class="mr-input" type="text" id="f-org" name="org">
+      </div>
+      <div class="mr-field full">
+        <label class="mr-label" for="f-msg">Message</label>
+        <textarea class="mr-textarea" id="f-msg" name="message" rows="4"></textarea>
+      </div>
+      <button type="submit" id="mr-submit">
+        Send inquiry
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="mr-footer-inner">
+    <div class="mr-footer-top">
+      <div class="mr-footer-brand">
+        <div class="mr-footer-logo">MISS RAYNELLE</div>
+        <p class="mr-footer-tagline">Gender Advocate · Social Commentator · Political Analyst · Writer</p>
+        <p class="mr-footer-org">Founder &amp; CEO, Gutsy Women Foundation.</p>
+      </div>
+      <div class="mr-footer-links">
+        <div>
+          <h4 class="mr-footer-col-label">Explore</h4>
+          <ul class="mr-footer-nav">
+            <li><a href="#about">About</a></li>
+            <li><a href="#impact">Advocacy</a></li>
+            <li><a href="#insights">Insights</a></li>
+            <li><a href="#media">Media</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="mr-footer-col-label">Connect</h4>
+          <ul class="mr-footer-nav">
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">X</a></li>
+            <li><a href="#">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="mr-footer-bottom">
+      <span>© 2026 Miss Raynelle. All rights reserved.</span>
+      <span class="mr-footer-mark">Voice for Change</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const ease = 'cubic-bezier(.25,.1,.25,1)';
+
+  // ---- Hero entrance ----
+  requestAnimationFrame(() => {
+    document.getElementById('mr-hero-text').classList.add('hero-entered');
+  });
+
+  // ---- Header scroll ----
+  const header = document.getElementById('mr-header');
+  const applyHeader = () => {
+    header.classList.toggle('scrolled', (window.scrollY || window.pageYOffset) > 60);
+  };
+  applyHeader();
+
+  // ---- Parallax on hero portrait ----
+  const heroImg = document.getElementById('mr-hero-img');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY || window.pageYOffset;
+      if (heroImg && y < window.innerHeight) {
+        heroImg.style.transform = `translateY(${y * 0.16}px) scale(1.02)`;
+      }
+      applyHeader();
+      ticking = false;
+    });
+  }, { passive: true });
+
+  // ---- Reveal on scroll ----
+  const reveals = document.querySelectorAll('[data-reveal]');
+  reveals.forEach(el => {
+    const delay = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+    el.style.transitionDelay = delay + 'ms';
+  });
+  const revObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        revObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  reveals.forEach(el => revObs.observe(el));
+
+  // ---- Stat counters ----
+  const animateCount = (el) => {
+    const target = parseInt(el.getAttribute('data-count'), 10);
+    const suffix = el.getAttribute('data-suffix') || '';
+    const dur = 1600;
+    const start = performance.now();
+    const fmt = n => n.toLocaleString('en-US');
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(target * eased)) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const statObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCount(e.target); statObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.mr-stat-num').forEach(el => statObs.observe(el));
+
+  // ---- Mobile drawer ----
+  const drawer = document.getElementById('mr-drawer');
+  const openDrawer = () => drawer.classList.add('open');
+  const closeDrawer = () => drawer.classList.remove('open');
+  document.getElementById('mr-hamburger').addEventListener('click', openDrawer);
+  document.getElementById('mr-drawer-close').addEventListener('click', closeDrawer);
+  document.getElementById('mr-scrim').addEventListener('click', closeDrawer);
+  document.querySelectorAll('.mr-drawer-link').forEach(l => l.addEventListener('click', closeDrawer));
+
+  // ---- Form ----
+  const form = document.getElementById('mr-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('mr-submit');
+      btn.innerHTML = 'Inquiry sent ✓';
+      btn.classList.add('sent');
+    });
+  }
+
+  // ---- Play button ----
+  const play = document.getElementById('mr-play');
+  if (play) play.addEventListener('click', () => { play.style.opacity = '0.6'; });
+})();
+</script>
+</body>
+</html>

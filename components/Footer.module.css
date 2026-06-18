@@ -1,0 +1,66 @@
+.footer {
+  background: #faf8f4;
+  border-top: 1px solid #e7e5e0;
+  padding: clamp(3.5rem, 7vh, 5rem) clamp(1.25rem, 5vw, 5.5rem) 2rem;
+}
+
+.inner { max-width: 1200px; margin: 0 auto; }
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2.5rem;
+  padding-bottom: clamp(2rem, 5vh, 3rem);
+}
+
+.brand { max-width: 32ch; }
+
+.logo {
+  font-family: var(--font-merriweather-sans), sans-serif;
+  font-weight: 800;
+  font-size: 1.18rem;
+  letter-spacing: 0.16em;
+  margin-bottom: 0.4rem;
+  color: #16181f;
+}
+
+.tagline { color: #8a8e98; font-size: 0.84rem; letter-spacing: 0.06em; }
+.org { color: #4c515d; font-size: 0.86rem; margin-top: 1rem; }
+
+.links { display: flex; flex-wrap: wrap; gap: clamp(2.5rem, 6vw, 5rem); }
+
+.colLabel {
+  font-family: var(--font-anonymous-pro), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8a8e98;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.nav a { font-size: 0.86rem; color: #4c515d; transition: color 0.2s; }
+.nav a:hover { color: #16181f; }
+
+.bottom {
+  border-top: 1px solid #e7e5e0;
+  padding-top: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.78rem;
+  color: #8a8e98;
+}
+
+.mark {
+  font-family: var(--font-anonymous-pro), monospace;
+  letter-spacing: 0.1em;
+}

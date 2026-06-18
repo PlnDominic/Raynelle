@@ -1,0 +1,37 @@
+.section {
+  background: #f1ece3;
+  padding: clamp(5rem, 12vh, 8.5rem) clamp(1.25rem, 5vw, 5.5rem);
+}
+
+.figure {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mark {
+  font-family: var(--font-merriweather-sans), sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+  line-height: 1;
+  color: #cdbba4;
+  margin-bottom: 0.5rem;
+}
+
+.text {
+  font-family: var(--font-merriweather-sans), sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3.6vw, 2.7rem);
+  line-height: 1.28;
+  letter-spacing: 0.005em;
+  color: #16181f;
+  margin-bottom: 1.8rem;
+}
+
+.caption {
+  font-family: var(--font-anonymous-pro), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8a8e98;
+}

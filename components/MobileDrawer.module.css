@@ -1,0 +1,49 @@
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 24, 31, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.panel {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: min(82vw, 360px);
+  background: #faf8f4;
+  padding: 5.5rem 2rem 2rem;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.open { pointer-events: auto; }
+.open .scrim { opacity: 1; }
+.open .panel { transform: none; }
+
+.close {
+  position: absolute;
+  top: 1.4rem; right: 1.4rem;
+  width: 40px; height: 40px;
+  display: grid;
+  place-items: center;
+}
+
+.link {
+  font-family: var(--font-merriweather-sans), sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e7e5e0;
+  color: #16181f;
+}
+.link:last-child { border-bottom: none; }

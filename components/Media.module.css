@@ -1,0 +1,104 @@
+.section {
+  scroll-margin-top: 80px;
+  background: linear-gradient(160deg, #1d2533 0%, #16181f 100%);
+  color: #fff;
+  padding: clamp(5rem, 12vh, 9rem) clamp(1.25rem, 5vw, 5.5rem);
+}
+
+.inner { max-width: 1200px; margin: 0 auto; }
+
+.header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto clamp(2.5rem, 5vh, 3.5rem);
+}
+
+.eyebrow {
+  font-family: var(--font-anonymous-pro), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.1rem;
+}
+
+.heading {
+  font-family: var(--font-merriweather-sans), sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+  line-height: 1.12;
+  margin-bottom: 1.2rem;
+}
+
+.body { color: rgba(255, 255, 255, 0.72); font-size: 1.05rem; line-height: 1.7; }
+
+.feature {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  aspect-ratio: 16/7;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(0deg, rgba(22,24,31,0.78) 0%, rgba(22,24,31,0.12) 55%, rgba(22,24,31,0.35) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  display: grid;
+  place-items: center;
+  color: #1d2533;
+  z-index: 2;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.play:hover { transform: translate(-50%, -50%) scale(1.08); }
+
+.caption {
+  position: absolute;
+  left: 1.6rem; bottom: 1.4rem; right: 1.6rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.captionLabel {
+  font-family: var(--font-anonymous-pro), monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.4rem;
+}
+
+.captionTitle {
+  font-family: var(--font-merriweather-sans), sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.tags {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2.4rem;
+  font-family: var(--font-anonymous-pro), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
