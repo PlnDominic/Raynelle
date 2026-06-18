@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Reveal from './Reveal';
 
 const programs = [
@@ -37,6 +38,14 @@ export default function Foundation() {
             Empowering women and girls through leadership development, advocacy, mentorship, and community
             transformation, building the next generation of women bold enough to lead.
           </p>
+          <div className="relative overflow-hidden aspect-[4/3] mb-9 border border-white/14">
+            <Image
+              src="/images/raynelle-foundation.jpeg"
+              alt="Miss Raynelle at a Gutsy Women Foundation event"
+              fill
+              style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
+            />
+          </div>
           <a
             href="#contact"
             className="inline-flex items-center gap-2.5 bg-white text-navy-dark text-[0.8rem] tracking-[0.12em] uppercase px-[1.7rem] py-[0.95rem] transition-transform hover:-translate-y-1 hover:bg-cream-warm"
