@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Merriweather+Sans:wght@400;500;700;800&family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet" />
+<script src="image-slot.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: #faf8f4; }
+  img { display: block; max-width: 100%; }
+  @keyframes mrFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes mrPulse { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(2.4); opacity: 0; } }
+  /* responsive collapses, cannot be expressed inline */
+  @media (max-width: 980px) {
+    #mr-nav-links { display: none !important; }
+    #mr-hamburger { display: inline-grid !important; }
+    #mr-hero-grid { grid-template-columns: 1fr !important; }
+    #mr-hero-photo { min-height: 56vh !important; order: -1 !important; }
+    #mr-hero-text { padding: 2.5rem clamp(1.25rem,5vw,5.5rem) 3.5rem !important; }
+    #mr-vert { display: none !important; }
+    #mr-about-grid, #mr-foundation-grid, #mr-contact-grid { grid-template-columns: 1fr !important; }
+    #mr-impact-grid { grid-template-columns: 1fr 1fr !important; }
+    #mr-insights-grid { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 600px) {
+    #mr-impact-grid, #mr-stats-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+</helmet>
+
+<div id="mr-root" style="font-family:'Assistant',system-ui,sans-serif;color:#16181f;background:#faf8f4;line-height:1.65;overflow-x:hidden;">
+
+  <!-- ============ HEADER ============ -->
+  <header id="mr-header" style="position:fixed;top:0;left:0;right:0;z-index:100;height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,5.5rem);color:#ffffff;border-bottom:1px solid transparent;transition:background .35s cubic-bezier(.25,.1,.25,1),color .35s cubic-bezier(.25,.1,.25,1),border-color .35s,backdrop-filter .35s;">
+    <a href="#home" style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:1.12rem;letter-spacing:.18em;color:inherit;">MISS&nbsp;RAYNELLE</a>
+    <nav id="mr-nav-links" style="display:flex;gap:1.9rem;align-items:center;">
+      <a href="#about" style="color:inherit;font-size:.82rem;letter-spacing:.04em;" style-hover="opacity:.65">About</a>
+      <a href="#impact" style="color:inherit;font-size:.82rem;letter-spacing:.04em;" style-hover="opacity:.65">Advocacy</a>
+      <a href="#insights" style="color:inherit;font-size:.82rem;letter-spacing:.04em;" style-hover="opacity:.65">Insights</a>
+      <a href="#foundation" style="color:inherit;font-size:.82rem;letter-spacing:.04em;" style-hover="opacity:.65">Foundation</a>
+      <a href="#media" style="color:inherit;font-size:.82rem;letter-spacing:.04em;" style-hover="opacity:.65">Media</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <a href="#contact" id="mr-header-cta" style="font-family:'Assistant',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid currentColor;padding:.62rem 1.15rem;color:inherit;transition:background .25s,color .25s;" style-hover="background:#ffffff;color:#1d2533">Contact</a>
+      <button id="mr-hamburger" aria-label="Open menu" style="display:none;place-items:center;width:42px;height:42px;color:inherit;">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- mobile drawer -->
+  <div id="mr-drawer" style="position:fixed;inset:0;z-index:200;pointer-events:none;">
+    <div id="mr-scrim" style="position:absolute;inset:0;background:rgba(22,24,31,.4);opacity:0;transition:opacity .3s;"></div>
+    <div id="mr-drawer-panel" style="position:absolute;top:0;right:0;bottom:0;width:min(82vw,360px);background:#faf8f4;padding:5.5rem 2rem 2rem;transform:translateX(100%);transition:transform .35s cubic-bezier(.25,.1,.25,1);display:flex;flex-direction:column;gap:.2rem;">
+      <button id="mr-drawer-close" aria-label="Close menu" style="position:absolute;top:1.4rem;right:1.4rem;width:40px;height:40px;display:grid;place-items:center;">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#16181f" stroke-width="1.5"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+      </button>
+      <a href="#about" class="mr-drawer-link" style="font-family:'Merriweather Sans',sans-serif;font-size:1.35rem;font-weight:700;padding:.75rem 0;border-bottom:1px solid #e7e5e0;color:#16181f;">About</a>
+      <a href="#impact" class="mr-drawer-link" style="font-family:'Merriweather Sans',sans-serif;font-size:1.35rem;font-weight:700;padding:.75rem 0;border-bottom:1px solid #e7e5e0;color:#16181f;">Advocacy</a>
+      <a href="#insights" class="mr-drawer-link" style="font-family:'Merriweather Sans',sans-serif;font-size:1.35rem;font-weight:700;padding:.75rem 0;border-bottom:1px solid #e7e5e0;color:#16181f;">Insights</a>
+      <a href="#foundation" class="mr-drawer-link" style="font-family:'Merriweather Sans',sans-serif;font-size:1.35rem;font-weight:700;padding:.75rem 0;border-bottom:1px solid #e7e5e0;color:#16181f;">Foundation</a>
+      <a href="#media" class="mr-drawer-link" style="font-family:'Merriweather Sans',sans-serif;font-size:1.35rem;font-weight:700;padding:.75rem 0;border-bottom:1px solid #e7e5e0;color:#16181f;">Media</a>
+      <a href="#contact" class="mr-drawer-link" style="font-family:'Merriweather Sans',sans-serif;font-size:1.35rem;font-weight:700;padding:.75rem 0;color:#16181f;">Contact</a>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section id="home" style="position:relative;min-height:100svh;background:linear-gradient(160deg,#2a3344 0%,#1d2533 100%);">
+    <div id="mr-hero-grid" style="display:grid;grid-template-columns:1.05fr .95fr;min-height:100svh;align-items:stretch;">
+      <!-- text -->
+      <div id="mr-hero-text" style="display:flex;flex-direction:column;justify-content:center;padding:7rem clamp(1.25rem,5vw,5.5rem) 4rem;color:#ffffff;position:relative;z-index:2;">
+        <div id="mr-hero-eyebrow" style="opacity:0;transform:translateY(16px);font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-bottom:1.6rem;">Gender Advocate · Political Analyst · Writer</div>
+        <h1 id="mr-hero-name" style="opacity:0;transform:translateY(20px);font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:clamp(3.2rem,7vw,5.4rem);line-height:.98;letter-spacing:.005em;margin-bottom:1.6rem;">Miss<br/>Raynelle</h1>
+        <p id="mr-hero-head" style="opacity:0;transform:translateY(20px);font-family:'Merriweather Sans',sans-serif;font-weight:500;font-size:clamp(1.15rem,1.9vw,1.5rem);line-height:1.3;color:rgba(255,255,255,.92);max-width:22ch;margin-bottom:1.4rem;">Championing equality. Influencing policy. Empowering women.</p>
+        <p id="mr-hero-sub" style="opacity:0;transform:translateY(20px);font-size:1rem;line-height:1.7;color:rgba(255,255,255,.72);max-width:46ch;margin-bottom:2.4rem;">Through advocacy, political analysis, and community leadership, Miss Raynelle drives the conversations that move equity forward, and turns them into policy, programs, and progress.</p>
+        <div id="mr-hero-cta" style="opacity:0;transform:translateY(20px);display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+          <a href="#impact" style="display:inline-flex;align-items:center;gap:.6rem;background:#ffffff;color:#1d2533;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.95rem 1.7rem;transition:transform .25s,background .25s;" style-hover="transform:translateY(-4px);background:#f1ece3">Explore my work
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+          </a>
+          <a href="#foundation" style="display:inline-flex;align-items:center;color:#fff;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.5);" style-hover="opacity:.7">The Foundation</a>
+        </div>
+      </div>
+      <!-- photo -->
+      <div id="mr-hero-photo" style="position:relative;overflow:hidden;min-height:100svh;background:#222a38;">
+        <img id="mr-hero-img" src="assets/raynelle-portrait.jpeg" alt="Miss Raynelle" style="position:absolute;inset:-8% 0 0 0;width:100%;height:116%;object-fit:cover;object-position:50% 22%;will-change:transform;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(29,37,51,.85) 0%,rgba(29,37,51,.12) 26%,rgba(29,37,51,0) 55%),linear-gradient(0deg,rgba(29,37,51,.5) 0%,rgba(29,37,51,0) 30%);pointer-events:none;"></div>
+        <div id="mr-vert" style="position:absolute;left:1.6rem;bottom:2.4rem;writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Anonymous Pro',monospace;font-size:.7rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,255,255,.6);">Voice for Change</div>
+      </div>
+    </div>
+    <!-- scroll cue -->
+    <div style="position:absolute;left:50%;bottom:1.6rem;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.5);">
+      <span style="font-family:'Anonymous Pro',monospace;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;">Scroll</span>
+      <span style="width:1px;height:34px;background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,0));animation:mrFloat 2.4s ease-in-out infinite;"></span>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" style="scroll-margin-top:80px;background:#ffffff;padding:clamp(5rem,12vh,9rem) clamp(1.25rem,5vw,5.5rem);">
+    <div id="mr-about-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2.5rem,5vw,5rem);align-items:center;">
+      <div data-reveal style="position:relative;">
+        <div style="aspect-ratio:4/5;overflow:hidden;background:#f1ece3;border:1px solid #e7e5e0;">
+          <img src="assets/raynelle-portrait.jpeg" alt="Miss Raynelle portrait" style="width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:grayscale(.18) contrast(1.02);" />
+        </div>
+        <div style="position:absolute;bottom:-1px;right:-1px;background:#2a3344;color:#fff;padding:1.1rem 1.4rem;max-width:62%;">
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.35rem;">Founder &amp; CEO</div>
+          <div style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.04em;">Gutsy Women Foundation</div>
+        </div>
+      </div>
+      <div data-reveal data-reveal-delay="120">
+        <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#8a8e98;margin-bottom:1.2rem;">About Miss Raynelle</div>
+        <h2 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.12;margin-bottom:1.6rem;">A voice built for the hard conversations, and the lasting change that follows them.</h2>
+        <p style="color:#4c515d;font-size:1.05rem;line-height:1.75;margin-bottom:1.2rem;">Miss Raynelle is a respected gender advocate, social commentator, political analyst, and writer dedicated to advancing equality and shaping public discourse. Across rooms of power and grassroots gatherings alike, she amplifies women's voices, sharpens policy debate, and models the inclusive leadership she calls for.</p>
+        <p style="color:#4c515d;font-size:1.05rem;line-height:1.75;margin-bottom:2rem;">Her work moves between the page, the podium, and the policy table, translating sharp analysis into the campaigns, mentorship, and community programs that carry change beyond the headline.</p>
+        <div style="display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;">
+          <div style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-style:italic;font-size:1.5rem;color:#2a3344;letter-spacing:.01em;">Raynelle</div>
+          <span style="width:46px;height:1px;background:#d9d6cf;"></span>
+          <span style="font-size:.85rem;color:#8a8e98;">Gender Advocate · Writer · Founder</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTE ============ -->
+  <section style="background:#f1ece3;padding:clamp(5rem,12vh,8.5rem) clamp(1.25rem,5vw,5.5rem);">
+    <figure data-reveal style="max-width:1000px;margin:0 auto;text-align:center;">
+      <div style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:4rem;line-height:1;color:#cdbba4;margin-bottom:.5rem;">“</div>
+      <blockquote style="font-family:'Merriweather Sans',sans-serif;font-weight:500;font-size:clamp(1.6rem,3.6vw,2.7rem);line-height:1.28;letter-spacing:.005em;color:#16181f;margin:0 0 1.8rem;">Real change begins when women are empowered to lead, speak, and transform their communities.</blockquote>
+      <figcaption style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#8a8e98;">Miss Raynelle</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ AREAS OF IMPACT ============ -->
+  <section id="impact" style="scroll-margin-top:80px;background:#ffffff;padding:clamp(5rem,12vh,9rem) clamp(1.25rem,5vw,5.5rem);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2.5rem,5vh,3.5rem);">
+        <div>
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#8a8e98;margin-bottom:.9rem;">Areas of Impact</div>
+          <h2 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.12;max-width:18ch;">Where the work lives, and how it moves.</h2>
+        </div>
+        <p style="color:#4c515d;font-size:1rem;line-height:1.7;max-width:34ch;">Four disciplines, one through-line: turning conviction into measurable progress for women and girls.</p>
+      </div>
+      <div id="mr-impact-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e7e5e0;border:1px solid #e7e5e0;">
+        <article data-reveal data-reveal-delay="0" class="mr-impact-card" style="background:#ffffff;padding:2.2rem 1.8rem;display:flex;flex-direction:column;gap:1rem;min-height:300px;transition:background .3s;" style-hover="background:#faf8f4">
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.16em;color:#cdbba4;">01</div>
+          <h3 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.22rem;line-height:1.2;">Gender Advocacy</h3>
+          <p style="color:#4c515d;font-size:.95rem;line-height:1.7;margin-top:auto;">Promoting equality, inclusion, and women's rights through strategic, sustained advocacy.</p>
+        </article>
+        <article data-reveal data-reveal-delay="100" class="mr-impact-card" style="background:#ffffff;padding:2.2rem 1.8rem;display:flex;flex-direction:column;gap:1rem;min-height:300px;transition:background .3s;" style-hover="background:#faf8f4">
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.16em;color:#cdbba4;">02</div>
+          <h3 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.22rem;line-height:1.2;">Political Analysis</h3>
+          <p style="color:#4c515d;font-size:.95rem;line-height:1.7;margin-top:auto;">Clear-eyed perspective on governance, democracy, and the policy that shapes daily life.</p>
+        </article>
+        <article data-reveal data-reveal-delay="200" class="mr-impact-card" style="background:#ffffff;padding:2.2rem 1.8rem;display:flex;flex-direction:column;gap:1rem;min-height:300px;transition:background .3s;" style-hover="background:#faf8f4">
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.16em;color:#cdbba4;">03</div>
+          <h3 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.22rem;line-height:1.2;">Social Commentary</h3>
+          <p style="color:#4c515d;font-size:.95rem;line-height:1.7;margin-top:auto;">Examining the issues that define our moment and opening up the conversations that matter.</p>
+        </article>
+        <article data-reveal data-reveal-delay="300" class="mr-impact-card" style="background:#ffffff;padding:2.2rem 1.8rem;display:flex;flex-direction:column;gap:1rem;min-height:300px;transition:background .3s;" style-hover="background:#faf8f4">
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.16em;color:#cdbba4;">04</div>
+          <h3 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.22rem;line-height:1.2;">Writing &amp; Thought Leadership</h3>
+          <p style="color:#4c515d;font-size:.95rem;line-height:1.7;margin-top:auto;">Articles, opinion, and research-driven insight that set the terms of the debate.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOUNDATION ============ -->
+  <section id="foundation" style="scroll-margin-top:80px;background:linear-gradient(160deg,#2a3344 0%,#1d2533 100%);color:#fff;padding:clamp(5rem,13vh,9.5rem) clamp(1.25rem,5vw,5.5rem);">
+    <div id="mr-foundation-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:start;">
+      <div data-reveal>
+        <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.2rem;">Founder &amp; CEO</div>
+        <h2 style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.05;letter-spacing:.01em;margin-bottom:1.6rem;">Gutsy Women Foundation</h2>
+        <p style="color:rgba(255,255,255,.78);font-size:1.08rem;line-height:1.75;margin-bottom:2.2rem;max-width:42ch;">Empowering women and girls through leadership development, advocacy, mentorship, and community transformation, building the next generation of women bold enough to lead.</p>
+        <a href="#contact" style="display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:#1d2533;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.95rem 1.7rem;transition:transform .25s,background .25s;" style-hover="transform:translateY(-4px);background:#f1ece3">Support the mission
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+        </a>
+      </div>
+      <div data-reveal data-reveal-delay="140" style="display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);">
+        <div style="background:#212a39;padding:1.7rem 1.6rem;">
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.66rem;letter-spacing:.16em;color:rgba(255,255,255,.45);margin-bottom:.5rem;">01 · Leadership Development</div>
+          <h3 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.12rem;margin-bottom:.45rem;">Building future women leaders</h3>
+          <p style="color:rgba(255,255,255,.7);font-size:.92rem;line-height:1.65;">Training, fellowships, and platforms that put women in the rooms where decisions are made.</p>
+        </div>
+        <div style="background:#212a39;padding:1.7rem 1.6rem;">
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.66rem;letter-spacing:.16em;color:rgba(255,255,255,.45);margin-bottom:.5rem;">02 · Mentorship Programs</div>
+          <h3 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.12rem;margin-bottom:.45rem;">Supporting growth, one woman at a time</h3>
+          <p style="color:rgba(255,255,255,.7);font-size:.92rem;line-height:1.65;">Pairing emerging leaders with mentors who open doors and sharpen ambition.</p>
+        </div>
+        <div style="background:#212a39;padding:1.7rem 1.6rem;">
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.66rem;letter-spacing:.16em;color:rgba(255,255,255,.45);margin-bottom:.5rem;">03 · Community Outreach</div>
+          <h3 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.12rem;margin-bottom:.45rem;">Grassroots impact and awareness</h3>
+          <p style="color:rgba(255,255,255,.7);font-size:.92rem;line-height:1.65;">Campaigns and convenings that meet communities where they are and move them forward.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section style="background:#faf8f4;padding:clamp(4rem,9vh,6.5rem) clamp(1.25rem,5vw,5.5rem);border-bottom:1px solid #e7e5e0;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#8a8e98;margin-bottom:2.4rem;text-align:center;">Impact in numbers</div>
+      <div id="mr-stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,2.5rem);">
+        <div data-reveal data-reveal-delay="0" style="text-align:center;">
+          <div class="mr-stat" data-count="5000" data-suffix="+" style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:clamp(2.6rem,5vw,3.6rem);line-height:1;color:#2a3344;letter-spacing:.01em;">0</div>
+          <div style="margin-top:.7rem;font-size:.9rem;letter-spacing:.04em;color:#4c515d;">Women Reached</div>
+        </div>
+        <div data-reveal data-reveal-delay="100" style="text-align:center;">
+          <div class="mr-stat" data-count="50" data-suffix="+" style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:clamp(2.6rem,5vw,3.6rem);line-height:1;color:#2a3344;letter-spacing:.01em;">0</div>
+          <div style="margin-top:.7rem;font-size:.9rem;letter-spacing:.04em;color:#4c515d;">Speaking Engagements</div>
+        </div>
+        <div data-reveal data-reveal-delay="200" style="text-align:center;">
+          <div class="mr-stat" data-count="100" data-suffix="+" style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:clamp(2.6rem,5vw,3.6rem);line-height:1;color:#2a3344;letter-spacing:.01em;">0</div>
+          <div style="margin-top:.7rem;font-size:.9rem;letter-spacing:.04em;color:#4c515d;">Published Articles</div>
+        </div>
+        <div data-reveal data-reveal-delay="300" style="text-align:center;">
+          <div class="mr-stat" data-count="10" data-suffix="+" style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:clamp(2.6rem,5vw,3.6rem);line-height:1;color:#2a3344;letter-spacing:.01em;">0</div>
+          <div style="margin-top:.7rem;font-size:.9rem;letter-spacing:.04em;color:#4c515d;">Advocacy Campaigns</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSIGHTS ============ -->
+  <section id="insights" style="scroll-margin-top:80px;background:#ffffff;padding:clamp(5rem,12vh,9rem) clamp(1.25rem,5vw,5.5rem);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2.5rem,5vh,3.5rem);">
+        <div>
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#8a8e98;margin-bottom:.9rem;">Latest Insights</div>
+          <h2 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.12;">Writing &amp; analysis</h2>
+        </div>
+        <a href="#" style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#4c515d;display:inline-flex;align-items:center;gap:.5rem;transition:gap .25s,color .25s;" style-hover="gap:.85rem;color:#16181f">All articles
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+        </a>
+      </div>
+      <div id="mr-insights-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,2.5vw,2.25rem);">
+        <article data-reveal data-reveal-delay="0" class="mr-article" style="cursor:pointer;">
+          <div style="aspect-ratio:4/3;background:#f1ece3;overflow:hidden;border:1px solid #e7e5e0;margin-bottom:1.2rem;display:flex;align-items:flex-end;padding:1.4rem;">
+            <span style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:2.6rem;color:#d8cbb8;line-height:.9;">01</span>
+          </div>
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#8a8e98;margin-bottom:.7rem;">Advocacy · Mar 2026</div>
+          <h3 class="mr-article-title" style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.28rem;line-height:1.25;transition:color .25s;">Women in Leadership: The Next Frontier</h3>
+        </article>
+        <article data-reveal data-reveal-delay="120" class="mr-article" style="cursor:pointer;">
+          <div style="aspect-ratio:4/3;background:#e7ddcf;overflow:hidden;border:1px solid #e7e5e0;margin-bottom:1.2rem;display:flex;align-items:flex-end;padding:1.4rem;">
+            <span style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:2.6rem;color:#cdbba4;line-height:.9;">02</span>
+          </div>
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#8a8e98;margin-bottom:.7rem;">Political Analysis · Feb 2026</div>
+          <h3 class="mr-article-title" style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.28rem;line-height:1.25;transition:color .25s;">Understanding Modern Political Dynamics</h3>
+        </article>
+        <article data-reveal data-reveal-delay="240" class="mr-article" style="cursor:pointer;">
+          <div style="aspect-ratio:4/3;background:#f1ece3;overflow:hidden;border:1px solid #e7e5e0;margin-bottom:1.2rem;display:flex;align-items:flex-end;padding:1.4rem;">
+            <span style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:2.6rem;color:#d8cbb8;line-height:.9;">03</span>
+          </div>
+          <div style="font-family:'Anonymous Pro',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#8a8e98;margin-bottom:.7rem;">Social Commentary · Jan 2026</div>
+          <h3 class="mr-article-title" style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.28rem;line-height:1.25;transition:color .25s;">Building Inclusive Communities</h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MEDIA ============ -->
+  <section id="media" style="scroll-margin-top:80px;background:linear-gradient(160deg,#1d2533 0%,#16181f 100%);color:#fff;padding:clamp(5rem,12vh,9rem) clamp(1.25rem,5vw,5.5rem);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal style="text-align:center;max-width:640px;margin:0 auto clamp(2.5rem,5vh,3.5rem);">
+        <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.1rem;">Media &amp; Speaking</div>
+        <h2 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:clamp(1.9rem,3.8vw,2.8rem);line-height:1.12;margin-bottom:1.2rem;">On stage, on air, on the record.</h2>
+        <p style="color:rgba(255,255,255,.72);font-size:1.05rem;line-height:1.7;">Keynotes, panels, broadcast interviews, and podcasts, wherever the conversation on gender and governance is happening.</p>
+      </div>
+      <div data-reveal data-reveal-delay="120" style="position:relative;border:1px solid rgba(255,255,255,.16);">
+        <image-slot id="mr-media-poster" src="assets/raynelle-portrait.jpeg" fit="cover" placeholder="Drop a keynote / interview still" style="display:block;width:100%;aspect-ratio:16/7;"></image-slot>
+        <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(22,24,31,.78) 0%,rgba(22,24,31,.12) 55%,rgba(22,24,31,.35) 100%);pointer-events:none;"></div>
+        <button id="mr-play" aria-label="Play featured video" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;color:#1d2533;transition:transform .25s;" style-hover="transform:translate(-50%,-50%) scale(1.08)">
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><polygon points="8 5 19 12 8 19"/></svg>
+        </button>
+        <div style="position:absolute;left:1.6rem;bottom:1.4rem;right:1.6rem;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;pointer-events:none;">
+          <div>
+            <div style="font-family:'Anonymous Pro',monospace;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.4rem;">Featured Keynote</div>
+            <div style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.25rem;">Women in Leadership: The Next Frontier</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:2.5rem;flex-wrap:wrap;justify-content:center;margin-top:2.4rem;font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);">
+        <span>Keynotes</span><span>·</span><span>Panel Discussions</span><span>·</span><span>Podcasts</span><span>·</span><span>Television</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" style="scroll-margin-top:80px;background:#ffffff;padding:clamp(5rem,12vh,9rem) clamp(1.25rem,5vw,5.5rem);">
+    <div id="mr-contact-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2.5rem,5vw,5rem);align-items:start;">
+      <div data-reveal>
+        <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#8a8e98;margin-bottom:1.2rem;">Let's create impact together</div>
+        <h2 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:clamp(1.9rem,3.8vw,2.8rem);line-height:1.12;margin-bottom:1.4rem;">Start a conversation.</h2>
+        <p style="color:#4c515d;font-size:1.05rem;line-height:1.75;margin-bottom:2rem;max-width:38ch;">For speaking engagements, partnerships, media inquiries, and collaboration opportunities. Reach out and let's build something that lasts.</p>
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:flex;align-items:center;gap:.8rem;color:#4c515d;font-size:.95rem;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2a3344" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            hello@missraynelle.com
+          </div>
+          <div style="display:flex;align-items:center;gap:.8rem;color:#4c515d;font-size:.95rem;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2a3344" stroke-width="1.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8Z"/></svg>
+            Gutsy Women Foundation · Accra, Ghana
+          </div>
+          <div style="display:flex;align-items:center;gap:.8rem;color:#4c515d;font-size:.95rem;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2a3344" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l2 5v3a1 1 0 0 1-1 1A17 17 0 0 1 4 5a1 1 0 0 1 1-1Z"/></svg>
+            0549094441
+          </div>
+        </div>
+      </div>
+      <form data-reveal data-reveal-delay="120" id="mr-form" style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;">
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <label style="font-family:'Anonymous Pro',monospace;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:#8a8e98;">Full Name</label>
+          <input type="text" name="name" style="font-family:'Assistant',sans-serif;font-size:.95rem;padding:.85rem .9rem;border:1px solid #d9d6cf;background:#faf8f4;color:#16181f;outline:none;transition:border-color .25s;" style-focus="border-color:#2a3344" />
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <label style="font-family:'Anonymous Pro',monospace;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:#8a8e98;">Email Address</label>
+          <input type="email" name="email" style="font-family:'Assistant',sans-serif;font-size:.95rem;padding:.85rem .9rem;border:1px solid #d9d6cf;background:#faf8f4;color:#16181f;outline:none;transition:border-color .25s;" style-focus="border-color:#2a3344" />
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;grid-column:1 / -1;">
+          <label style="font-family:'Anonymous Pro',monospace;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:#8a8e98;">Organization</label>
+          <input type="text" name="org" style="font-family:'Assistant',sans-serif;font-size:.95rem;padding:.85rem .9rem;border:1px solid #d9d6cf;background:#faf8f4;color:#16181f;outline:none;transition:border-color .25s;" style-focus="border-color:#2a3344" />
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;grid-column:1 / -1;">
+          <label style="font-family:'Anonymous Pro',monospace;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:#8a8e98;">Message</label>
+          <textarea name="message" rows="4" style="font-family:'Assistant',sans-serif;font-size:.95rem;padding:.85rem .9rem;border:1px solid #d9d6cf;background:#faf8f4;color:#16181f;outline:none;resize:vertical;transition:border-color .25s;" style-focus="border-color:#2a3344"></textarea>
+        </div>
+        <button type="submit" id="mr-submit" style="grid-column:1 / -1;justify-self:start;display:inline-flex;align-items:center;gap:.6rem;background:#2a3344;color:#fff;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.95rem 1.9rem;transition:transform .25s,background .25s;" style-hover="transform:translateY(-4px);background:#1d2533">Send inquiry
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#faf8f4;border-top:1px solid #e7e5e0;padding:clamp(3.5rem,7vh,5rem) clamp(1.25rem,5vw,5.5rem) 2rem;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:2.5rem;padding-bottom:clamp(2rem,5vh,3rem);">
+        <div style="max-width:32ch;">
+          <div style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:1.18rem;letter-spacing:.16em;margin-bottom:.4rem;">MISS RAYNELLE</div>
+          <p style="color:#8a8e98;font-size:.84rem;letter-spacing:.06em;">Gender Advocate · Social Commentator · Political Analyst · Writer</p>
+          <p style="color:#4c515d;font-size:.86rem;margin-top:1rem;">Founder &amp; CEO, Gutsy Women Foundation.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(2.5rem,6vw,5rem);">
+          <div>
+            <h4 style="font-family:'Anonymous Pro',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#8a8e98;font-weight:400;margin:0 0 1rem;">Explore</h4>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.65rem;">
+              <li><a href="#about" style="font-size:.86rem;color:#4c515d;" style-hover="color:#16181f">About</a></li>
+              <li><a href="#impact" style="font-size:.86rem;color:#4c515d;" style-hover="color:#16181f">Advocacy</a></li>
+              <li><a href="#insights" style="font-size:.86rem;color:#4c515d;" style-hover="color:#16181f">Insights</a></li>
+              <li><a href="#media" style="font-size:.86rem;color:#4c515d;" style-hover="color:#16181f">Media</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-family:'Anonymous Pro',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#8a8e98;font-weight:400;margin:0 0 1rem;">Connect</h4>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.65rem;">
+              <li><a href="#" style="font-size:.86rem;color:#4c515d;" style-hover="color:#16181f">LinkedIn</a></li>
+              <li><a href="#" style="font-size:.86rem;color:#4c515d;" style-hover="color:#16181f">Instagram</a></li>
+              <li><a href="#" style="font-size:.86rem;color:#4c515d;" style-hover="color:#16181f">X</a></li>
+              <li><a href="#" style="font-size:.86rem;color:#4c515d;" style-hover="color:#16181f">YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #e7e5e0;padding-top:1.6rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;font-size:.78rem;color:#8a8e98;">
+        <span>© 2026 Miss Raynelle. All rights reserved.</span>
+        <span style="font-family:'Anonymous Pro',monospace;letter-spacing:.1em;">Voice for Change</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = document.getElementById('mr-root');
+    if (!root) return;
+    const ease = 'cubic-bezier(.25,.1,.25,1)';
+
+    // ---- Hero entrance ----
+    const heroSeq = ['mr-hero-eyebrow','mr-hero-name','mr-hero-head','mr-hero-sub','mr-hero-cta'];
+    heroSeq.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.transition = `opacity .9s ${ease} ${0.15 + i * 0.13}s, transform .9s ${ease} ${0.15 + i * 0.13}s`;
+      requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'none'; });
+    });
+
+    // ---- Header scroll state ----
+    const header = document.getElementById('mr-header');
+    const cta = document.getElementById('mr-header-cta');
+    const applyHeader = () => {
+      const scrolled = (window.scrollY || window.pageYOffset) > 60;
+      if (scrolled) {
+        header.style.background = 'rgba(250,248,244,.85)';
+        header.style.backdropFilter = 'saturate(140%) blur(14px)';
+        header.style.webkitBackdropFilter = 'saturate(140%) blur(14px)';
+        header.style.color = '#16181f';
+        header.style.borderBottomColor = '#e7e5e0';
+      } else {
+        header.style.background = 'transparent';
+        header.style.backdropFilter = 'none';
+        header.style.webkitBackdropFilter = 'none';
+        header.style.color = '#ffffff';
+        header.style.borderBottomColor = 'transparent';
+      }
+    };
+    applyHeader();
+
+    // ---- Parallax on hero portrait ----
+    const heroImg = document.getElementById('mr-hero-img');
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY || window.pageYOffset;
+        if (heroImg && y < window.innerHeight) {
+          heroImg.style.transform = `translateY(${y * 0.16}px) scale(1.02)`;
+        }
+        applyHeader();
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ---- Reveal on scroll ----
+    const reveals = root.querySelectorAll('[data-reveal]');
+    reveals.forEach((el) => {
+      const delay = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = `opacity .8s ${ease} ${delay}ms, transform .8s ${ease} ${delay}ms`;
+      el.style.willChange = 'opacity, transform';
+    });
+    const revObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          revObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach((el) => revObs.observe(el));
+
+    // ---- Stat counters ----
+    const stats = root.querySelectorAll('.mr-stat');
+    const animateCount = (el) => {
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const dur = 1600;
+      const start = performance.now();
+      const fmt = (n) => n.toLocaleString('en-US');
+      const tick = (now) => {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(Math.round(target * eased)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const statObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { animateCount(e.target); statObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    stats.forEach((el) => statObs.observe(el));
+
+    // ---- Article hover color ----
+    root.querySelectorAll('.mr-article').forEach((a) => {
+      const t = a.querySelector('.mr-article-title');
+      a.addEventListener('mouseenter', () => { if (t) t.style.color = '#2a3344'; });
+      a.addEventListener('mouseleave', () => { if (t) t.style.color = '#16181f'; });
+    });
+
+    // ---- Mobile drawer ----
+    const drawer = document.getElementById('mr-drawer');
+    const scrim = document.getElementById('mr-scrim');
+    const panel = document.getElementById('mr-drawer-panel');
+    const openDrawer = () => { drawer.style.pointerEvents = 'auto'; scrim.style.opacity = '1'; panel.style.transform = 'none'; };
+    const closeDrawer = () => { drawer.style.pointerEvents = 'none'; scrim.style.opacity = '0'; panel.style.transform = 'translateX(100%)'; };
+    document.getElementById('mr-hamburger').addEventListener('click', openDrawer);
+    document.getElementById('mr-drawer-close').addEventListener('click', closeDrawer);
+    scrim.addEventListener('click', closeDrawer);
+    root.querySelectorAll('.mr-drawer-link').forEach((l) => l.addEventListener('click', closeDrawer));
+
+    // ---- Form (demo) ----
+    const form = document.getElementById('mr-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('mr-submit');
+        btn.innerHTML = 'Inquiry sent ✓';
+        btn.style.background = '#1d2533';
+      });
+    }
+
+    // ---- Play button (demo) ----
+    const play = document.getElementById('mr-play');
+    if (play) play.addEventListener('click', () => { play.style.opacity = '0.6'; });
+  }
+}
+</script>
+</body>
+</html>
