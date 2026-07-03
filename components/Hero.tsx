@@ -50,29 +50,29 @@ export default function Hero() {
             style={animateStyle(0.15)}
             className="font-mono text-[0.72rem] tracking-[0.22em] uppercase text-white/60 mb-6"
           >
-            Gender Advocate · Political Analyst · Writer
+            Gender Advocate · CEO, Gutsy Women Foundation · Writer
           </div>
           <h1
             data-animate
             style={animateStyle(0.28)}
             className="font-merriweather font-extrabold text-[clamp(3.2rem,7vw,5.4rem)] leading-[0.98] tracking-[0.005em] mb-6"
           >
-            Miss<br />Raynelle
+            Raynelle<br />Boadu
           </h1>
           <p
             data-animate
             style={animateStyle(0.41)}
             className="font-merriweather font-medium text-[clamp(1.15rem,1.9vw,1.5rem)] leading-[1.3] text-white/92 max-w-[22ch] mb-5"
           >
-            Championing equality. Influencing policy. Empowering women.
+            Building confidence. Advancing equality. Empowering women.
           </p>
           <p
             data-animate
             style={animateStyle(0.54)}
             className="text-base leading-[1.7] text-white/72 max-w-[46ch] mb-10"
           >
-            Through advocacy, political analysis, and community leadership, Miss Raynelle drives the
-            conversations that move equity forward, and turns them into policy, programs, and progress.
+            Through coaching, advocacy, and community leadership, Raynelle Boadu equips women and girls
+            with the confidence and tools to discover their potential and become agents of transformation.
           </p>
           <div
             data-animate
@@ -100,7 +100,7 @@ export default function Hero() {
           <div ref={imgWrapRef} className="absolute inset-[-8%_0_0_0] h-[116%] will-change-transform">
             <Image
               src="/images/raynelle-portrait.jpeg"
-              alt="Miss Raynelle"
+              alt="Raynelle Boadu"
               fill
               priority
               style={{ objectFit: 'cover', objectPosition: '50% 22%' }}
