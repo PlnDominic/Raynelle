@@ -47,7 +47,9 @@ export default function Foundation() {
             />
           </div>
           <a
-            href="#contact"
+            href="https://www.gustywomenfoundation.org/donate"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 bg-white text-navy-dark text-[0.8rem] tracking-[0.12em] uppercase px-[1.7rem] py-[0.95rem] transition-transform hover:-translate-y-1 hover:bg-cream-warm"
           >
             Support the mission
