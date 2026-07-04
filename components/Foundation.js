@@ -39,7 +39,12 @@ export default function Foundation() {
               style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
             />
           </div>
-          <a href="#contact" className={styles.cta}>
+          <a
+            href="https://www.gustywomenfoundation.org/donate"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.cta}
+          >
             Support the mission
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.7">
               <line x1="4" y1="12" x2="19" y2="12" />
