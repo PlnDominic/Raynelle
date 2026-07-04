@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Reveal from './Reveal';
 import styles from './Foundation.module.css';
 
@@ -30,6 +31,14 @@ export default function Foundation() {
             Empowering women and girls through leadership development, advocacy, mentorship, and community
             transformation, building the next generation of women bold enough to lead.
           </p>
+          <div className={styles.photoFrame}>
+            <Image
+              src="/images/raynelle-foundation.jpeg"
+              alt="Miss Raynelle at a Gutsy Women Foundation event"
+              fill
+              style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
+            />
+          </div>
           <a href="#contact" className={styles.cta}>
             Support the mission
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.7">
