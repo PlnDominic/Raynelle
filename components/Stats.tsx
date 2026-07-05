@@ -9,10 +9,9 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { count: 5000, suffix: '+', label: 'Women Reached' },
-  { count: 50,   suffix: '+', label: 'Speaking Engagements' },
-  { count: 100,  suffix: '+', label: 'Published Articles' },
-  { count: 10,   suffix: '+', label: 'Advocacy Campaigns' },
+  { count: 35000, suffix: '+', label: 'Girls connected' },
+  { count: 200,   suffix: '+', label: 'Girls mentored' },
+  { count: 24,    suffix: '',  label: 'Mentors engaged' },
 ];
 
 function animateCount(el: HTMLElement, target: number, suffix: string) {
@@ -69,7 +68,7 @@ export default function Stats() {
             Impact in numbers
           </div>
         </Reveal>
-        <div className="grid grid-cols-4 max-sm:grid-cols-2 gap-[clamp(1.5rem,3vw,2.5rem)]">
+        <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-[clamp(1.5rem,3vw,2.5rem)]">
           {stats.map((s, i) => (
             <StatCounter key={s.label} {...s} delay={i * 100} />
           ))}
