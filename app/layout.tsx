@@ -24,9 +24,9 @@ const anonymousPro = Anonymous_Pro({
 });
 
 export const metadata: Metadata = {
-  title: 'Miss Raynelle | Gender Advocate · Political Analyst · Writer',
+  title: 'Raynelle Boadu | Gender Advocate, Coach & Founder of Gutsy Women Foundation',
   description:
-    'Miss Raynelle is a respected Gender Advocate, Social Commentator, Political Analyst, and Writer. Founder & CEO of Gutsy Women Foundation, Accra, Ghana.',
+    'Raynelle Boadu is a gender advocate, communications professional, confidence and self-awareness coach, and writer. Founder & CEO of the Gutsy Women Foundation, empowering women and girls through education, mentorship, and advocacy.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -5,22 +5,22 @@ const cards = [
   {
     num: '01',
     title: 'Gender Advocacy',
-    desc: "Promoting equality, inclusion, and women's rights through strategic, sustained advocacy.",
+    desc: 'Promoting equality, inclusion, and the rights of women and girls through strategic, sustained advocacy.',
   },
   {
     num: '02',
-    title: 'Political Analysis',
-    desc: 'Clear-eyed perspective on governance, democracy, and the policy that shapes daily life.',
+    title: 'Confidence & Self-Awareness Coaching',
+    desc: 'Helping young women overcome fear in public speaking, self-expression, and identity to lead with purpose.',
   },
   {
     num: '03',
-    title: 'Social Commentary',
-    desc: 'Examining the issues that define our moment and opening up the conversations that matter.',
+    title: 'Mentorship & Education',
+    desc: 'Equipping girls and women with the knowledge, leadership skills, and opportunities they need to thrive.',
   },
   {
     num: '04',
-    title: 'Writing & Thought Leadership',
-    desc: 'Articles, opinion, and research-driven insight that set the terms of the debate.',
+    title: 'Writing & Social Commentary',
+    desc: 'Exploring the social and political issues that challenge perspectives, amplify voices, and encourage change.',
   },
 ];
 

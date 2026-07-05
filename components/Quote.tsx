@@ -12,7 +12,7 @@ export default function Quote() {
             Real change begins when women are empowered to lead, speak, and transform their communities.
           </blockquote>
           <figcaption className="font-mono text-[0.72rem] tracking-[0.2em] uppercase text-muted">
-            Miss Raynelle
+            Raynelle Boadu
           </figcaption>
         </figure>
       </Reveal>

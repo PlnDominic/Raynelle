@@ -22,24 +22,40 @@ export default function About() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className={styles.eyebrow}>About Miss Raynelle</div>
+          <div className={styles.eyebrow}>About Raynelle</div>
           <h2 className={styles.heading}>
-            A voice built for the hard conversations, and the lasting change that follows them.
+            Building confidence, unlocking voice, and lasting change for women and girls.
           </h2>
           <p className={styles.body}>
-            Miss Raynelle is a respected gender advocate, social commentator, political analyst, and writer
-            dedicated to advancing equality and shaping public discourse. Across rooms of power and grassroots
-            gatherings alike, she amplifies women&apos;s voices, sharpens policy debate, and models the inclusive
-            leadership she calls for.
+            Raynelle Boadu is a gender advocate, communications professional, confidence and self-awareness
+            coach, writer, and development-focused leader, dedicated to empowering young girls and women
+            through education, mentorship, advocacy, and sustainable social impact.
           </p>
-          <p className={styles.body} style={{ marginBottom: '2rem' }}>
-            Her work moves between the page, the podium, and the policy table, translating sharp analysis into
-            the campaigns, mentorship, and community programs that carry change beyond the headline.
+          <p className={styles.body}>
+            As Founder and CEO of the Gutsy Women Foundation, she builds programs that equip women and girls
+            with the confidence, knowledge, and leadership skills to thrive. She is especially passionate about
+            helping young women overcome fear, in public speaking, self-expression, and identity, and guiding
+            them toward a strong sense of purpose. A writer at heart, she explores the social and political
+            issues that challenge perspectives and amplify voices.
           </p>
+
+          <div className={styles.credentials}>
+            <div className={styles.credentialsLabel}>Academic Qualifications</div>
+            <ul className={styles.credentialList}>
+              <li className={styles.credentialItem}>BA, Strategic Communication</li>
+              <li className={styles.credentialItem}>MA, Gender and Law</li>
+              <li className={styles.credentialItem}>MBA, Marketing</li>
+              <li className={styles.credentialItem}>
+                MA, Development Management
+                <span className={styles.credentialNote}>in progress</span>
+              </li>
+            </ul>
+          </div>
+
           <div className={styles.sigRow}>
             <span className={styles.sigName}>Raynelle</span>
             <span className={styles.sigDivider} />
-            <span className={styles.sigRole}>Gender Advocate · Writer · Founder</span>
+            <span className={styles.sigRole}>Gender Advocate · Coach · Writer · Founder</span>
           </div>
         </Reveal>
       </div>
