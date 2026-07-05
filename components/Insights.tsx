@@ -11,11 +11,24 @@ interface ArticleItem {
   link?: string;
 }
 
-const articles: ArticleItem[] = [
-  { num: '01', bg: '#f1ece3', numColor: '#d8cbb8', meta: 'Advocacy · Mar 2026',         title: 'Women in Leadership: The Next Frontier', link: 'https://vt.tiktok.com/ZSCphBLmC/' },
-  { num: '02', bg: '#e7ddcf', numColor: '#cdbba4', meta: 'Political Analysis · Feb 2026', title: 'Understanding Modern Political Dynamics' },
-  { num: '03', bg: '#f1ece3', numColor: '#d8cbb8', meta: 'Social Commentary · Jan 2026', title: 'Building Inclusive Communities' },
+const links = [
+  'https://vt.tiktok.com/ZSCphBLmC/',
+  'https://vt.tiktok.com/ZSCpBGPee/',
+  'https://vt.tiktok.com/ZSCpBQLtg/',
+  'https://vt.tiktok.com/ZSCpBp2eS/',
+  'https://vt.tiktok.com/ZSCpBnDkh/',
+  'https://vt.tiktok.com/ZSCpBGfws/',
+  'https://vt.tiktok.com/ZSCpBbrN2/',
 ];
+
+const articles: ArticleItem[] = links.map((link, i) => ({
+  num: String(i + 1).padStart(2, '0'),
+  bg: i % 2 ? '#e7ddcf' : '#f1ece3',
+  numColor: i % 2 ? '#cdbba4' : '#d8cbb8',
+  meta: 'TikTok',
+  title: 'Watch on TikTok',
+  link,
+}));
 
 interface TikTokPreview {
   thumbnail: string;
@@ -61,10 +74,10 @@ function InsightCard({ article: a }: { article: ArticleItem }) {
   const body = (
     <>
       <div
-        className="aspect-[4/3] overflow-hidden border border-border mb-5 flex items-end p-[1.4rem]"
+        className="aspect-[9/16] overflow-hidden border border-border mb-5 flex items-end p-[1.4rem]"
         style={
           preview
-            ? { background: `url("${preview.thumbnail}") center top / cover no-repeat` }
+            ? { background: `url("${preview.thumbnail}") center / cover no-repeat` }
             : { background: a.bg }
         }
       >
@@ -123,9 +136,9 @@ export default function Insights() {
           </a>
         </Reveal>
 
-        <div className="grid grid-cols-3 max-md:grid-cols-1 gap-[clamp(1.5rem,2.5vw,2.25rem)]">
+        <div className="grid grid-cols-2 gap-[clamp(1.5rem,2.5vw,2.25rem)]">
           {articles.map((a, i) => (
-            <Reveal key={a.num} delay={i * 120}>
+            <Reveal key={a.num} delay={(i % 2) * 120}>
               <InsightCard article={a} />
             </Reveal>
           ))}
