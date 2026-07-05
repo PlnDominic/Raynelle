@@ -31,17 +31,17 @@ export default function Hero() {
       <div className={styles.grid}>
         <div ref={textRef} className={styles.textCol}>
           <div className={`${styles.eyebrow} ${styles.animate}`} style={{ transitionDelay: '0.15s' }}>
-            Gender Advocate · Political Analyst · Writer
+            Gender Advocate · Confidence Coach · Writer
           </div>
           <h1 className={`${styles.name} ${styles.animate}`} style={{ transitionDelay: '0.28s' }}>
             Miss<br />Raynelle
           </h1>
           <p className={`${styles.headline} ${styles.animate}`} style={{ transitionDelay: '0.41s' }}>
-            Championing equality. Influencing policy. Empowering women.
+            Empowering women and girls to lead, speak, and thrive.
           </p>
           <p className={`${styles.sub} ${styles.animate}`} style={{ transitionDelay: '0.54s' }}>
-            Through advocacy, political analysis, and community leadership, Miss Raynelle drives the
-            conversations that move equity forward, and turns them into policy, programs, and progress.
+            Through education, mentorship, advocacy, and coaching, Raynelle equips women and girls with the
+            confidence, skills, and opportunities to discover their potential and become agents of change.
           </p>
           <div className={`${styles.ctaRow} ${styles.animate}`} style={{ transitionDelay: '0.67s' }}>
             <a href="#impact" className={styles.ctaPrimary}>

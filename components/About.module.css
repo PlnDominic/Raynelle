@@ -72,6 +72,57 @@
   margin-bottom: 1.2rem;
 }
 
+.credentials {
+  margin: 1.8rem 0 1.8rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid #e7e5e0;
+}
+
+.credentialsLabel {
+  font-family: var(--font-anonymous-pro), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8a8e98;
+  margin-bottom: 0.9rem;
+}
+
+.credentialList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0;
+  margin: 0;
+}
+
+.credentialItem {
+  position: relative;
+  padding-left: 1.25rem;
+  color: #4c515d;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.credentialItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  background: #cdbba4;
+  border-radius: 50%;
+}
+
+.credentialNote {
+  font-family: var(--font-anonymous-pro), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #8a8e98;
+  margin-left: 0.4rem;
+}
+
 .sigRow {
   display: flex;
   align-items: center;

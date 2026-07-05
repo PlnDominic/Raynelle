@@ -35,8 +35,8 @@ export default function Foundation() {
             Gutsy Women Foundation
           </h2>
           <p className="text-white/78 text-[1.08rem] leading-[1.75] mb-9 max-w-[42ch]">
-            Empowering women and girls through leadership development, advocacy, mentorship, and community
-            transformation, building the next generation of women bold enough to lead.
+            Equipping women and girls with the confidence, knowledge, leadership skills, and opportunities to
+            thrive, through education, mentorship, and advocacy that create long-term, sustainable change.
           </p>
           <div className="relative overflow-hidden aspect-[4/3] mb-9 border border-white/14">
             <Image
@@ -47,9 +47,7 @@ export default function Foundation() {
             />
           </div>
           <a
-            href="https://www.gustywomenfoundation.org/donate"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
             className="inline-flex items-center gap-2.5 bg-white text-navy-dark text-[0.8rem] tracking-[0.12em] uppercase px-[1.7rem] py-[0.95rem] transition-transform hover:-translate-y-1 hover:bg-cream-warm"
           >
             Support the mission

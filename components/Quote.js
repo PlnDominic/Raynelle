@@ -10,7 +10,7 @@ export default function Quote() {
           <blockquote className={styles.text}>
             Real change begins when women are empowered to lead, speak, and transform their communities.
           </blockquote>
-          <figcaption className={styles.caption}>Miss Raynelle</figcaption>
+          <figcaption className={styles.caption}>Raynelle Boadu</figcaption>
         </figure>
       </Reveal>
     </section>
