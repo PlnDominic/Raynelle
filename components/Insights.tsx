@@ -1,10 +1,99 @@
+'use client';
+import { useEffect, useState } from 'react';
 import Reveal from './Reveal';
 
-const articles = [
-  { num: '01', bg: '#f1ece3', numColor: '#d8cbb8', meta: 'Advocacy · Mar 2026',         title: 'Women in Leadership: The Next Frontier' },
+interface ArticleItem {
+  num: string;
+  bg: string;
+  numColor: string;
+  meta: string;
+  title: string;
+  link?: string;
+}
+
+const articles: ArticleItem[] = [
+  { num: '01', bg: '#f1ece3', numColor: '#d8cbb8', meta: 'Advocacy · Mar 2026',         title: 'Women in Leadership: The Next Frontier', link: 'https://vt.tiktok.com/ZSCphBLmC/' },
   { num: '02', bg: '#e7ddcf', numColor: '#cdbba4', meta: 'Political Analysis · Feb 2026', title: 'Understanding Modern Political Dynamics' },
   { num: '03', bg: '#f1ece3', numColor: '#d8cbb8', meta: 'Social Commentary · Jan 2026', title: 'Building Inclusive Communities' },
 ];
+
+interface TikTokPreview {
+  thumbnail: string;
+  caption: string;
+  handle: string;
+}
+
+function cleanCaption(raw: string): string {
+  const text = raw.replace(/#\S+/g, '').replace(/\s+/g, ' ').trim();
+  return text.length > 90 ? text.slice(0, 90).trim() + '…' : text;
+}
+
+// Loads a post's cover image and caption via TikTok's CORS-enabled oEmbed
+// API; the card keeps its placeholder content until (and unless) this resolves.
+function useTikTokPreview(link?: string): TikTokPreview | null {
+  const [preview, setPreview] = useState<TikTokPreview | null>(null);
+
+  useEffect(() => {
+    if (!link) return;
+    let cancelled = false;
+    fetch('https://www.tiktok.com/oembed?url=' + encodeURIComponent(link))
+      .then((res) => (res.ok ? res.json() : null))
+      .then((d) => {
+        if (cancelled || !d || !d.thumbnail_url) return;
+        setPreview({
+          thumbnail: d.thumbnail_url,
+          caption: cleanCaption(d.title || ''),
+          handle: (d.author_url || '').split('@')[1] || '',
+        });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [link]);
+
+  return preview;
+}
+
+function InsightCard({ article: a }: { article: ArticleItem }) {
+  const preview = useTikTokPreview(a.link);
+
+  const body = (
+    <>
+      <div
+        className="aspect-[4/3] overflow-hidden border border-border mb-5 flex items-end p-[1.4rem]"
+        style={
+          preview
+            ? { background: `url("${preview.thumbnail}") center top / cover no-repeat` }
+            : { background: a.bg }
+        }
+      >
+        {!preview && (
+          <span
+            className="font-merriweather font-extrabold text-[2.6rem] leading-[0.9]"
+            style={{ color: a.numColor }}
+          >
+            {a.num}
+          </span>
+        )}
+      </div>
+      <div className="font-mono text-[0.66rem] tracking-[0.18em] uppercase text-muted mb-3">
+        {preview?.handle ? `TikTok · @${preview.handle}` : a.meta}
+      </div>
+      <h3 className="font-merriweather font-bold text-[1.28rem] leading-[1.25] text-ink transition-colors group-hover:text-navy">
+        {preview?.caption || a.title}
+      </h3>
+    </>
+  );
+
+  return a.link ? (
+    <a href={a.link} target="_blank" rel="noopener noreferrer" className="block cursor-pointer group">
+      {body}
+    </a>
+  ) : (
+    <article className="cursor-pointer group">{body}</article>
+  );
+}
 
 export default function Insights() {
   return (
@@ -21,10 +110,12 @@ export default function Insights() {
             </h2>
           </div>
           <a
-            href="#"
+            href="https://www.tiktok.com/@miss_raynelle"
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-mono text-[0.72rem] tracking-[0.16em] uppercase text-muted-light inline-flex items-center gap-2 transition-[gap,color] duration-200 hover:gap-[0.85rem] hover:text-ink"
           >
-            All articles
+            More on TikTok
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.7">
               <line x1="4" y1="12" x2="19" y2="12" />
               <polyline points="13 6 19 12 13 18" />
@@ -35,25 +126,7 @@ export default function Insights() {
         <div className="grid grid-cols-3 max-md:grid-cols-1 gap-[clamp(1.5rem,2.5vw,2.25rem)]">
           {articles.map((a, i) => (
             <Reveal key={a.num} delay={i * 120}>
-              <article className="cursor-pointer group">
-                <div
-                  className="aspect-[4/3] overflow-hidden border border-border mb-5 flex items-end p-[1.4rem]"
-                  style={{ background: a.bg }}
-                >
-                  <span
-                    className="font-merriweather font-extrabold text-[2.6rem] leading-[0.9]"
-                    style={{ color: a.numColor }}
-                  >
-                    {a.num}
-                  </span>
-                </div>
-                <div className="font-mono text-[0.66rem] tracking-[0.18em] uppercase text-muted mb-3">
-                  {a.meta}
-                </div>
-                <h3 className="font-merriweather font-bold text-[1.28rem] leading-[1.25] text-ink transition-colors group-hover:text-navy">
-                  {a.title}
-                </h3>
-              </article>
+              <InsightCard article={a} />
             </Reveal>
           ))}
         </div>

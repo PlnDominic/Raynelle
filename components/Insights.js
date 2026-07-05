@@ -1,11 +1,76 @@
+'use client';
+import { useEffect, useState } from 'react';
 import Reveal from './Reveal';
 import styles from './Insights.module.css';
 
 const articles = [
-  { num: '01', bg: '#f1ece3', numColor: '#d8cbb8', meta: 'Advocacy · Mar 2026', title: 'Women in Leadership: The Next Frontier' },
+  { num: '01', bg: '#f1ece3', numColor: '#d8cbb8', meta: 'Advocacy · Mar 2026', title: 'Women in Leadership: The Next Frontier', link: 'https://vt.tiktok.com/ZSCphBLmC/' },
   { num: '02', bg: '#e7ddcf', numColor: '#cdbba4', meta: 'Political Analysis · Feb 2026', title: 'Understanding Modern Political Dynamics' },
   { num: '03', bg: '#f1ece3', numColor: '#d8cbb8', meta: 'Social Commentary · Jan 2026', title: 'Building Inclusive Communities' },
 ];
+
+function cleanCaption(raw) {
+  const text = raw.replace(/#\S+/g, '').replace(/\s+/g, ' ').trim();
+  return text.length > 90 ? text.slice(0, 90).trim() + '…' : text;
+}
+
+// Loads a post's cover image and caption via TikTok's CORS-enabled oEmbed
+// API; the card keeps its placeholder content until (and unless) this resolves.
+function useTikTokPreview(link) {
+  const [preview, setPreview] = useState(null);
+
+  useEffect(() => {
+    if (!link) return;
+    let cancelled = false;
+    fetch('https://www.tiktok.com/oembed?url=' + encodeURIComponent(link))
+      .then((res) => (res.ok ? res.json() : null))
+      .then((d) => {
+        if (cancelled || !d || !d.thumbnail_url) return;
+        setPreview({
+          thumbnail: d.thumbnail_url,
+          caption: cleanCaption(d.title || ''),
+          handle: (d.author_url || '').split('@')[1] || '',
+        });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [link]);
+
+  return preview;
+}
+
+function InsightCard({ article: a }) {
+  const preview = useTikTokPreview(a.link);
+
+  const body = (
+    <>
+      <div
+        className={styles.thumb}
+        style={
+          preview
+            ? { background: `url("${preview.thumbnail}") center top / cover no-repeat` }
+            : { background: a.bg }
+        }
+      >
+        {!preview && (
+          <span className={styles.articleNum} style={{ color: a.numColor }}>{a.num}</span>
+        )}
+      </div>
+      <div className={styles.meta}>{preview?.handle ? `TikTok · @${preview.handle}` : a.meta}</div>
+      <h3 className={styles.title}>{preview?.caption || a.title}</h3>
+    </>
+  );
+
+  return a.link ? (
+    <a href={a.link} target="_blank" rel="noopener noreferrer" className={styles.article}>
+      {body}
+    </a>
+  ) : (
+    <article className={styles.article}>{body}</article>
+  );
+}
 
 export default function Insights() {
   return (
@@ -16,8 +81,13 @@ export default function Insights() {
             <div className={styles.eyebrow}>Latest Insights</div>
             <h2 className={styles.heading}>Writing &amp; analysis</h2>
           </div>
-          <a href="#" className={styles.allLink}>
-            All articles
+          <a
+            href="https://www.tiktok.com/@miss_raynelle"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.allLink}
+          >
+            More on TikTok
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.7">
               <line x1="4" y1="12" x2="19" y2="12" />
               <polyline points="13 6 19 12 13 18" />
@@ -28,13 +98,7 @@ export default function Insights() {
         <div className={styles.grid}>
           {articles.map((a, i) => (
             <Reveal key={a.num} delay={i * 120}>
-              <article className={styles.article}>
-                <div className={styles.thumb} style={{ background: a.bg }}>
-                  <span className={styles.articleNum} style={{ color: a.numColor }}>{a.num}</span>
-                </div>
-                <div className={styles.meta}>{a.meta}</div>
-                <h3 className={styles.title}>{a.title}</h3>
-              </article>
+              <InsightCard article={a} />
             </Reveal>
           ))}
         </div>
