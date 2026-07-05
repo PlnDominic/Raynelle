@@ -4,10 +4,9 @@ import Reveal from './Reveal';
 import styles from './Stats.module.css';
 
 const stats = [
-  { count: 5000, suffix: '+', label: 'Women Reached' },
-  { count: 50, suffix: '+', label: 'Speaking Engagements' },
-  { count: 100, suffix: '+', label: 'Published Articles' },
-  { count: 10, suffix: '+', label: 'Advocacy Campaigns' },
+  { count: 35000, suffix: '+', label: 'Girls connected' },
+  { count: 200, suffix: '+', label: 'Girls mentored' },
+  { count: 24, suffix: '', label: 'Mentors engaged' },
 ];
 
 function StatCounter({ count, suffix, label, delay }) {
