@@ -784,19 +784,19 @@ footer {
         <div class="mr-section-eyebrow">Latest Insights</div>
         <h2 class="mr-section-h2">Writing &amp; analysis</h2>
       </div>
-      <a href="#" class="mr-all-link">
-        All articles
+      <a href="https://www.tiktok.com/@miss_raynelle" target="_blank" rel="noopener noreferrer" class="mr-all-link">
+        More on TikTok
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
       </a>
     </div>
     <div id="mr-insights-grid">
-      <article data-reveal data-reveal-delay="0" class="mr-article">
+      <a data-reveal data-reveal-delay="0" class="mr-article" href="https://vt.tiktok.com/ZSCphBLmC/" target="_blank" rel="noopener noreferrer" data-tiktok="https://vt.tiktok.com/ZSCphBLmC/">
         <div class="mr-article-thumb" style="background:#f1ece3;">
           <span class="mr-article-num" style="color:#d8cbb8;">01</span>
         </div>
         <div class="mr-article-meta">Advocacy · Mar 2026</div>
         <h3 class="mr-article-title">Women in Leadership: The Next Frontier</h3>
-      </article>
+      </a>
       <article data-reveal data-reveal-delay="120" class="mr-article">
         <div class="mr-article-thumb" style="background:#e7ddcf;">
           <span class="mr-article-num" style="color:#cdbba4;">02</span>
@@ -995,6 +995,31 @@ footer {
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('.mr-stat-num').forEach(el => statObs.observe(el));
+
+  // ---- TikTok insight previews ----
+  // Cards with data-tiktok load the post's cover image and caption via
+  // TikTok's CORS-enabled oEmbed API; placeholder content stays on failure.
+  document.querySelectorAll('[data-tiktok]').forEach(async (card) => {
+    try {
+      const res = await fetch('https://www.tiktok.com/oembed?url=' + encodeURIComponent(card.getAttribute('data-tiktok')));
+      if (!res.ok) return;
+      const d = await res.json();
+      const thumb = card.querySelector('.mr-article-thumb');
+      if (thumb && d.thumbnail_url) {
+        thumb.style.background = 'url("' + d.thumbnail_url + '") center top / cover no-repeat';
+        const num = card.querySelector('.mr-article-num');
+        if (num) num.style.display = 'none';
+      }
+      const caption = (d.title || '').replace(/#\S+/g, '').replace(/\s+/g, ' ').trim();
+      if (caption) {
+        const title = card.querySelector('.mr-article-title');
+        if (title) title.textContent = caption.length > 90 ? caption.slice(0, 90).trim() + '…' : caption;
+      }
+      const handle = (d.author_url || '').split('@')[1];
+      const meta = card.querySelector('.mr-article-meta');
+      if (meta && handle) meta.textContent = 'TikTok · @' + handle;
+    } catch (e) { /* keep placeholder */ }
+  });
 
   // ---- Mobile drawer ----
   const drawer = document.getElementById('mr-drawer');

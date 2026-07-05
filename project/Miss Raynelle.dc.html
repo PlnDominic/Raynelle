@@ -233,18 +233,18 @@
           <div style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#8a8e98;margin-bottom:.9rem;">Latest Insights</div>
           <h2 style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.12;">Writing &amp; analysis</h2>
         </div>
-        <a href="#" style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#4c515d;display:inline-flex;align-items:center;gap:.5rem;transition:gap .25s,color .25s;" style-hover="gap:.85rem;color:#16181f">All articles
+        <a href="https://www.tiktok.com/@miss_raynelle" target="_blank" rel="noopener noreferrer" style="font-family:'Anonymous Pro',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#4c515d;display:inline-flex;align-items:center;gap:.5rem;transition:gap .25s,color .25s;" style-hover="gap:.85rem;color:#16181f">More on TikTok
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
         </a>
       </div>
       <div id="mr-insights-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,2.5vw,2.25rem);">
-        <article data-reveal data-reveal-delay="0" class="mr-article" style="cursor:pointer;">
-          <div style="aspect-ratio:4/3;background:#f1ece3;overflow:hidden;border:1px solid #e7e5e0;margin-bottom:1.2rem;display:flex;align-items:flex-end;padding:1.4rem;">
-            <span style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:2.6rem;color:#d8cbb8;line-height:.9;">01</span>
+        <a data-reveal data-reveal-delay="0" class="mr-article" href="https://vt.tiktok.com/ZSCphBLmC/" target="_blank" rel="noopener noreferrer" data-tiktok="https://vt.tiktok.com/ZSCphBLmC/" style="display:block;cursor:pointer;color:inherit;">
+          <div class="mr-article-thumb" style="aspect-ratio:4/3;background:#f1ece3;overflow:hidden;border:1px solid #e7e5e0;margin-bottom:1.2rem;display:flex;align-items:flex-end;padding:1.4rem;">
+            <span class="mr-article-num" style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:2.6rem;color:#d8cbb8;line-height:.9;">01</span>
           </div>
-          <div style="font-family:'Anonymous Pro',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#8a8e98;margin-bottom:.7rem;">Advocacy · Mar 2026</div>
+          <div class="mr-article-meta" style="font-family:'Anonymous Pro',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#8a8e98;margin-bottom:.7rem;">Advocacy · Mar 2026</div>
           <h3 class="mr-article-title" style="font-family:'Merriweather Sans',sans-serif;font-weight:700;font-size:1.28rem;line-height:1.25;transition:color .25s;">Women in Leadership: The Next Frontier</h3>
-        </article>
+        </a>
         <article data-reveal data-reveal-delay="120" class="mr-article" style="cursor:pointer;">
           <div style="aspect-ratio:4/3;background:#e7ddcf;overflow:hidden;border:1px solid #e7e5e0;margin-bottom:1.2rem;display:flex;align-items:flex-end;padding:1.4rem;">
             <span style="font-family:'Merriweather Sans',sans-serif;font-weight:800;font-size:2.6rem;color:#cdbba4;line-height:.9;">02</span>
@@ -476,6 +476,31 @@ class Component extends DCLogic {
       const t = a.querySelector('.mr-article-title');
       a.addEventListener('mouseenter', () => { if (t) t.style.color = '#2a3344'; });
       a.addEventListener('mouseleave', () => { if (t) t.style.color = '#16181f'; });
+    });
+
+    // ---- TikTok insight previews ----
+    // Cards with data-tiktok load the post's cover image and caption via
+    // TikTok's CORS-enabled oEmbed API; placeholder content stays on failure.
+    root.querySelectorAll('[data-tiktok]').forEach(async (card) => {
+      try {
+        const res = await fetch('https://www.tiktok.com/oembed?url=' + encodeURIComponent(card.getAttribute('data-tiktok')));
+        if (!res.ok) return;
+        const d = await res.json();
+        const thumb = card.querySelector('.mr-article-thumb');
+        if (thumb && d.thumbnail_url) {
+          thumb.style.background = 'url("' + d.thumbnail_url + '") center top / cover no-repeat';
+          const num = card.querySelector('.mr-article-num');
+          if (num) num.style.display = 'none';
+        }
+        const caption = (d.title || '').replace(/#\S+/g, '').replace(/\s+/g, ' ').trim();
+        if (caption) {
+          const title = card.querySelector('.mr-article-title');
+          if (title) title.textContent = caption.length > 90 ? caption.slice(0, 90).trim() + '…' : caption;
+        }
+        const handle = (d.author_url || '').split('@')[1];
+        const meta = card.querySelector('.mr-article-meta');
+        if (meta && handle) meta.textContent = 'TikTok · @' + handle;
+      } catch (e) { /* keep placeholder */ }
     });
 
     // ---- Mobile drawer ----
