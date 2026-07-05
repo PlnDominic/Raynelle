@@ -39,6 +39,16 @@ export default function Footer() {
                 Connect
               </h4>
               <ul className="flex flex-col gap-2.5">
+                <li>
+                  <a
+                    href="https://www.tiktok.com/@miss_raynelle"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[0.86rem] text-muted-light transition-colors hover:text-ink"
+                  >
+                    TikTok
+                  </a>
+                </li>
                 {['LinkedIn', 'Instagram', 'X', 'YouTube'].map((label) => (
                   <li key={label}>
                     <a href="#" className="text-[0.86rem] text-muted-light transition-colors hover:text-ink">

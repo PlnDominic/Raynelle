@@ -24,6 +24,11 @@ export default function Footer() {
             <div>
               <h4 className={styles.colLabel}>Connect</h4>
               <ul className={styles.nav}>
+                <li>
+                  <a href="https://www.tiktok.com/@miss_raynelle" target="_blank" rel="noopener noreferrer">
+                    TikTok
+                  </a>
+                </li>
                 <li><a href="#">LinkedIn</a></li>
                 <li><a href="#">Instagram</a></li>
                 <li><a href="#">X</a></li>
