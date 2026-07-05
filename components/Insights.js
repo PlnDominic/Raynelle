@@ -3,11 +3,24 @@ import { useEffect, useState } from 'react';
 import Reveal from './Reveal';
 import styles from './Insights.module.css';
 
-const articles = [
-  { num: '01', bg: '#f1ece3', numColor: '#d8cbb8', meta: 'Advocacy · Mar 2026', title: 'Women in Leadership: The Next Frontier', link: 'https://vt.tiktok.com/ZSCphBLmC/' },
-  { num: '02', bg: '#e7ddcf', numColor: '#cdbba4', meta: 'Political Analysis · Feb 2026', title: 'Understanding Modern Political Dynamics' },
-  { num: '03', bg: '#f1ece3', numColor: '#d8cbb8', meta: 'Social Commentary · Jan 2026', title: 'Building Inclusive Communities' },
+const links = [
+  'https://vt.tiktok.com/ZSCphBLmC/',
+  'https://vt.tiktok.com/ZSCpBGPee/',
+  'https://vt.tiktok.com/ZSCpBQLtg/',
+  'https://vt.tiktok.com/ZSCpBp2eS/',
+  'https://vt.tiktok.com/ZSCpBnDkh/',
+  'https://vt.tiktok.com/ZSCpBGfws/',
+  'https://vt.tiktok.com/ZSCpBbrN2/',
 ];
+
+const articles = links.map((link, i) => ({
+  num: String(i + 1).padStart(2, '0'),
+  bg: i % 2 ? '#e7ddcf' : '#f1ece3',
+  numColor: i % 2 ? '#cdbba4' : '#d8cbb8',
+  meta: 'TikTok',
+  title: 'Watch on TikTok',
+  link,
+}));
 
 function cleanCaption(raw) {
   const text = raw.replace(/#\S+/g, '').replace(/\s+/g, ' ').trim();
@@ -50,7 +63,7 @@ function InsightCard({ article: a }) {
         className={styles.thumb}
         style={
           preview
-            ? { background: `url("${preview.thumbnail}") center top / cover no-repeat` }
+            ? { background: `url("${preview.thumbnail}") center / cover no-repeat` }
             : { background: a.bg }
         }
       >
@@ -97,7 +110,7 @@ export default function Insights() {
 
         <div className={styles.grid}>
           {articles.map((a, i) => (
-            <Reveal key={a.num} delay={i * 120}>
+            <Reveal key={a.num} delay={(i % 2) * 120}>
               <InsightCard article={a} />
             </Reveal>
           ))}
