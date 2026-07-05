@@ -16,10 +16,10 @@ export default function About() {
         <Reveal className="relative">
           <div className="relative aspect-[4/5] overflow-hidden bg-cream-warm border border-border">
             <Image
-              src="/images/raynelle-portrait.jpeg"
+              src="/images/raynelle-about.jpeg"
               alt="Raynelle Boadu portrait"
               fill
-              style={{ objectFit: 'cover', objectPosition: '50% 18%', filter: 'grayscale(0.18) contrast(1.02)' }}
+              style={{ objectFit: 'cover', objectPosition: '50% 22%' }}
             />
           </div>
           <div className="absolute -bottom-px -right-px bg-navy text-white p-[1.1rem_1.4rem] max-w-[62%]">

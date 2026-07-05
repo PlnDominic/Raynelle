@@ -9,10 +9,10 @@ export default function About() {
         <Reveal className={styles.photoWrap}>
           <div className={styles.photoFrame}>
             <Image
-              src="/images/raynelle-portrait.jpeg"
-              alt="Miss Raynelle portrait"
+              src="/images/raynelle-about.jpeg"
+              alt="Raynelle Boadu portrait"
               fill
-              style={{ objectFit: 'cover', objectPosition: '50% 18%', filter: 'grayscale(0.18) contrast(1.02)' }}
+              style={{ objectFit: 'cover', objectPosition: '50% 22%' }}
             />
           </div>
           <div className={styles.badge}>
