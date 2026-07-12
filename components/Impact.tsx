@@ -1,10 +1,11 @@
+import Image from 'next/image';
 import Reveal from './Reveal';
 
 const cards = [
-  { num: '01', title: 'Gender Advocacy', desc: 'Promoting equality, inclusion, and the rights of women and girls through strategic, sustained advocacy.' },
-  { num: '02', title: 'Confidence & Self-Awareness Coaching', desc: 'Helping young women overcome fear in public speaking, self-expression, and identity to lead with purpose.' },
-  { num: '03', title: 'Mentorship & Education', desc: 'Equipping girls and women with the knowledge, leadership skills, and opportunities they need to thrive.' },
-  { num: '04', title: 'Writing & Social Commentary', desc: 'Exploring the social and political issues that challenge perspectives, amplify voices, and encourage change.' },
+  { num: '01', title: 'Gender Advocacy', desc: 'Promoting equality, inclusion, and the rights of women and girls through strategic, sustained advocacy.', img: '/images/impact-advocacy.png', alt: 'Gutsy Women Foundation members supporting a woman at a community outreach', focus: '50% 30%' },
+  { num: '02', title: 'Confidence & Self-Awareness Coaching', desc: 'Helping young women overcome fear in public speaking, self-expression, and identity to lead with purpose.', img: '/images/impact-coaching.jpg', alt: 'A young woman speaking confidently at the microphone during a GWF masterclass', focus: '50% 30%' },
+  { num: '03', title: 'Mentorship & Education', desc: 'Equipping girls and women with the knowledge, leadership skills, and opportunities they need to thrive.', img: '/images/impact-mentorship.png', alt: 'A Gutsy Women Foundation mentor guiding a schoolgirl', focus: '50% 35%' },
+  { num: '04', title: 'Writing & Social Commentary', desc: 'Exploring the social and political issues that challenge perspectives, amplify voices, and encourage change.', img: '/images/impact-writing.jpg', alt: 'An engaged student audience at a GWF Cape Coast program', focus: '50% 40%' },
 ];
 
 export default function Impact() {
@@ -29,7 +30,17 @@ export default function Impact() {
         <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-px bg-border border border-border">
           {cards.map((card, i) => (
             <Reveal key={card.num} delay={i * 100} className="contents">
-              <article className="bg-white p-[2.2rem_1.8rem] flex flex-col gap-4 min-h-[300px] transition-colors hover:bg-cream">
+              <article className="group bg-white p-[2.2rem_1.8rem] flex flex-col gap-4 min-h-[300px] transition-colors hover:bg-cream">
+                <div className="relative w-full aspect-[4/3] rounded overflow-hidden bg-[#ece9e3] mb-1">
+                  <Image
+                    src={card.img}
+                    alt={card.alt}
+                    fill
+                    sizes="(max-width: 600px) 100vw, (max-width: 980px) 50vw, 25vw"
+                    style={{ objectFit: 'cover', objectPosition: card.focus }}
+                    className="transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
                 <div className="font-mono text-[0.72rem] tracking-[0.16em] text-accent">{card.num}</div>
                 <h3 className="font-merriweather font-bold text-[1.22rem] leading-[1.2]">{card.title}</h3>
                 <p className="text-muted-light text-[0.95rem] leading-[1.7] mt-auto">{card.desc}</p>
