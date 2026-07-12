@@ -24,6 +24,11 @@ export default function Footer() {
             <div>
               <h4 className={styles.colLabel}>Connect</h4>
               <ul className={styles.nav}>
+                <li>
+                  <a href="https://www.tiktok.com/@miss_raynelle" target="_blank" rel="noopener noreferrer">
+                    TikTok
+                  </a>
+                </li>
                 <li><a href="#">LinkedIn</a></li>
                 <li><a href="#">Instagram</a></li>
                 <li><a href="#">X</a></li>
@@ -35,7 +40,14 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <span>© 2026 Miss Raynelle. All rights reserved.</span>
-          <span className={styles.mark}>Voice for Change</span>
+          <a
+            className={styles.mark}
+            href="https://www.ecstasytechnologies.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Developed by Ecstasy Technologies
+          </a>
         </div>
       </div>
     </footer>

@@ -24,7 +24,7 @@ export default function Contact() {
           <div className={styles.details}>
             <div className={styles.detail}>
               <MailIcon />
-              hello@missraynelle.com
+              raynelle@gutsywomenfoundation.org
             </div>
             <div className={styles.detail}>
               <PinIcon />

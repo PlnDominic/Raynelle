@@ -39,6 +39,16 @@ export default function Footer() {
                 Connect
               </h4>
               <ul className="flex flex-col gap-2.5">
+                <li>
+                  <a
+                    href="https://www.tiktok.com/@miss_raynelle"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[0.86rem] text-muted-light transition-colors hover:text-ink"
+                  >
+                    TikTok
+                  </a>
+                </li>
                 {['LinkedIn', 'Instagram', 'X', 'YouTube'].map((label) => (
                   <li key={label}>
                     <a href="#" className="text-[0.86rem] text-muted-light transition-colors hover:text-ink">
@@ -53,7 +63,14 @@ export default function Footer() {
 
         <div className="border-t border-border pt-6 flex flex-wrap justify-between gap-4 text-[0.78rem] text-muted">
           <span>© 2026 Miss Raynelle. All rights reserved.</span>
-          <span className="font-mono tracking-[0.1em]">Voice for Change</span>
+          <a
+            href="https://www.ecstasytechnologies.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono tracking-[0.1em] transition-colors hover:text-ink"
+          >
+            Developed by Ecstasy Technologies
+          </a>
         </div>
       </div>
     </footer>

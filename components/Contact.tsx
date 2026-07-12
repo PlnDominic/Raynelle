@@ -29,7 +29,7 @@ export default function Contact() {
             Reach out and let&apos;s build something that lasts.
           </p>
           <div className="flex flex-col gap-4">
-            <ContactDetail icon={<MailIcon />}>hello@missraynelle.com</ContactDetail>
+            <ContactDetail icon={<MailIcon />}>raynelle@gutsywomenfoundation.org</ContactDetail>
             <ContactDetail icon={<PinIcon />}>Gutsy Women Foundation · Accra, Ghana</ContactDetail>
             <ContactDetail icon={<PhoneIcon />}>0549094441</ContactDetail>
           </div>
