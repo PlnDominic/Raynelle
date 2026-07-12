@@ -562,7 +562,8 @@ footer {
   display: flex; flex-wrap: wrap; justify-content: space-between;
   gap: 1rem; font-size: .78rem; color: #8a8e98;
 }
-.mr-footer-mark { font-family: 'Anonymous Pro', monospace; letter-spacing: .1em; }
+.mr-footer-mark { font-family: 'Anonymous Pro', monospace; letter-spacing: .1em; color: inherit; text-decoration: none; transition: color .2s ease; }
+    .mr-footer-mark:hover { color: #1a1a1a; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 980px) {
@@ -856,7 +857,7 @@ footer {
       <div class="mr-contact-details">
         <div class="mr-contact-detail">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2a3344" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          hello@missraynelle.com
+          raynelle@gutsywomenfoundation.org
         </div>
         <div class="mr-contact-detail">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2a3344" stroke-width="1.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8Z"/></svg>
@@ -925,7 +926,7 @@ footer {
     </div>
     <div class="mr-footer-bottom">
       <span>© 2026 Miss Raynelle. All rights reserved.</span>
-      <span class="mr-footer-mark">Voice for Change</span>
+      <a class="mr-footer-mark" href="https://www.ecstasytechnologies.com/" target="_blank" rel="noopener noreferrer">Developed by Ecstasy Technologies</a>
     </div>
   </div>
 </footer>

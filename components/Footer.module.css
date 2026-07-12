@@ -63,4 +63,11 @@
 .mark {
   font-family: var(--font-anonymous-pro), monospace;
   letter-spacing: 0.1em;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mark:hover {
+  color: #1a1a1a;
 }

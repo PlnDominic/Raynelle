@@ -63,7 +63,14 @@ export default function Footer() {
 
         <div className="border-t border-border pt-6 flex flex-wrap justify-between gap-4 text-[0.78rem] text-muted">
           <span>© 2026 Miss Raynelle. All rights reserved.</span>
-          <span className="font-mono tracking-[0.1em]">Voice for Change</span>
+          <a
+            href="https://www.ecstasytechnologies.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono tracking-[0.1em] transition-colors hover:text-ink"
+          >
+            Developed by Ecstasy Technologies
+          </a>
         </div>
       </div>
     </footer>

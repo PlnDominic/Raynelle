@@ -40,7 +40,14 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <span>© 2026 Miss Raynelle. All rights reserved.</span>
-          <span className={styles.mark}>Voice for Change</span>
+          <a
+            className={styles.mark}
+            href="https://www.ecstasytechnologies.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Developed by Ecstasy Technologies
+          </a>
         </div>
       </div>
     </footer>
