@@ -61,6 +61,23 @@
 }
 .card:hover { background: #faf8f4; }
 
+.cardMedia {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #ece9e3;
+  margin-bottom: 0.4rem;
+}
+
+.cardMedia :global(img) {
+  transition: transform 0.5s ease;
+}
+.card:hover .cardMedia :global(img) {
+  transform: scale(1.05);
+}
+
 .cardNum {
   font-family: var(--font-anonymous-pro), monospace;
   font-size: 0.72rem;
