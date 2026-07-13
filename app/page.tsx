@@ -7,7 +7,6 @@ import About from '@/components/About';
 import Quote from '@/components/Quote';
 import Impact from '@/components/Impact';
 import Foundation from '@/components/Foundation';
-import Stats from '@/components/Stats';
 import Insights from '@/components/Insights';
 import Media from '@/components/Media';
 import Mentorship from '@/components/Mentorship';
@@ -27,7 +26,6 @@ export default function Home() {
         <Quote />
         <Impact />
         <Foundation />
-        <Stats />
         <Insights />
         <Media />
         <Mentorship />

@@ -1,4 +1,5 @@
 import Reveal from './Reveal';
+import BookingModal from './BookingModal';
 import styles from './Mentorship.module.css';
 
 const focus = [
@@ -13,22 +14,6 @@ const details = [
   { label: 'Duration', value: '60-minute session' },
   { label: 'Availability', value: 'Limited slots each month' },
 ];
-
-const bookingBody =
-  'Hi Raynelle,\n\n' +
-  'I would like to book a one-on-one mentorship session.\n\n' +
-  'Name:\n' +
-  'Focus area:\n' +
-  'Preferred dates & times:\n' +
-  'A bit about my goals:\n\n' +
-  'Thank you!';
-
-const bookingHref =
-  'mailto:raynelle@gutsywomenfoundation.org' +
-  '?subject=' +
-  encodeURIComponent('One-on-One Mentorship Booking') +
-  '&body=' +
-  encodeURIComponent(bookingBody);
 
 export default function Mentorship() {
   return (
@@ -65,13 +50,7 @@ export default function Mentorship() {
                 </div>
               ))}
             </div>
-            <a href={bookingHref} className={styles.cta}>
-              Book a session
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.7">
-                <line x1="4" y1="12" x2="19" y2="12" />
-                <polyline points="13 6 19 12 13 18" />
-              </svg>
-            </a>
+            <BookingModal />
             <p className={styles.note}>
               Prefer to talk first? <a href="#contact" className={styles.noteLink}>Send a message</a> and
               Raynelle will follow up personally.
