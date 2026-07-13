@@ -3,8 +3,7 @@ import { Assistant, Merriweather_Sans, Anonymous_Pro } from 'next/font/google';
 import './globals.css';
 import Analytics from '@/components/Analytics';
 import StructuredData from '@/components/StructuredData';
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theraynelleboadu.com';
+import { SITE_URL } from '@/lib/siteUrl';
 
 const assistant = Assistant({
   subsets: ['latin'],
