@@ -21,6 +21,7 @@ export default function Header({ onMenuOpen }) {
         <a href="#impact" className={styles.navLink}>Advocacy</a>
         <a href="#insights" className={styles.navLink}>Insights</a>
         <a href="#foundation" className={styles.navLink}>Foundation</a>
+        <a href="#mentorship" className={styles.navLink}>Mentorship</a>
         <a href="#media" className={styles.navLink}>Media</a>
       </nav>
 

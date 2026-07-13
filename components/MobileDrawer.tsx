@@ -10,6 +10,7 @@ const links = [
   { href: '#impact', label: 'Advocacy' },
   { href: '#insights', label: 'Insights' },
   { href: '#foundation', label: 'Foundation' },
+  { href: '#mentorship', label: 'Mentorship' },
   { href: '#media', label: 'Media' },
   { href: '#contact', label: 'Contact' },
 ];

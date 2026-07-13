@@ -10,6 +10,7 @@ import Foundation from '@/components/Foundation';
 import Stats from '@/components/Stats';
 import Insights from '@/components/Insights';
 import Media from '@/components/Media';
+import Mentorship from '@/components/Mentorship';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -29,6 +30,7 @@ export default function Home() {
         <Stats />
         <Insights />
         <Media />
+        <Mentorship />
         <Contact />
       </main>
       <Footer />
