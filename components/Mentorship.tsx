@@ -1,4 +1,5 @@
 import Reveal from './Reveal';
+import BookingModal from './BookingModal';
 
 const focus = [
   'Confidence, public speaking & self-expression',
@@ -12,21 +13,6 @@ const details = [
   { label: 'Duration', value: '60-minute session' },
   { label: 'Availability', value: 'Limited slots each month' },
 ];
-
-const bookingBody =
-  'Hi Raynelle,\n\n' +
-  'I would like to book a one-on-one mentorship session.\n\n' +
-  'Name:\n' +
-  'Focus area:\n' +
-  'Preferred dates & times:\n' +
-  'A bit about my goals:\n\n' +
-  'Thank you!';
-
-const bookingHref =
-  'mailto:raynelle@gutsywomenfoundation.org?subject=' +
-  encodeURIComponent('One-on-One Mentorship Booking') +
-  '&body=' +
-  encodeURIComponent(bookingBody);
 
 export default function Mentorship() {
   return (
@@ -69,16 +55,7 @@ export default function Mentorship() {
                 </div>
               ))}
             </div>
-            <a
-              href={bookingHref}
-              className="inline-flex items-center gap-2.5 bg-ink text-white text-[0.8rem] tracking-[0.12em] uppercase px-[1.9rem] py-[0.95rem] transition-transform duration-250 hover:-translate-y-1 hover:bg-[#1d2533]"
-            >
-              Book a session
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.7">
-                <line x1="4" y1="12" x2="19" y2="12" />
-                <polyline points="13 6 19 12 13 18" />
-              </svg>
-            </a>
+            <BookingModal />
             <p className="mt-5 text-muted-light text-[0.86rem] leading-[1.6]">
               Prefer to talk first? <a href="#contact" className="text-ink underline underline-offset-2 hover:text-[#1d2533]">Send a message</a> and
               Raynelle will follow up personally.
