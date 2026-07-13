@@ -372,7 +372,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   color: #8a8e98; margin-bottom: 2.4rem; text-align: center;
 }
 #mr-stats-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 .mr-stat-item { text-align: center; }
@@ -397,12 +397,12 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 }
 .mr-all-link:hover { gap: .85rem; color: #16181f; }
 #mr-insights-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(2, 1fr);
   gap: clamp(1.5rem, 2.5vw, 2.25rem);
 }
 .mr-article { cursor: pointer; }
 .mr-article-thumb {
-  aspect-ratio: 4/3; overflow: hidden; border: 1px solid #e7e5e0;
+  aspect-ratio: 9/16; overflow: hidden; border: 1px solid #e7e5e0;
   margin-bottom: 1.2rem;
   display: flex; align-items: flex-end; padding: 1.4rem;
 }
@@ -575,7 +575,7 @@ footer {
   #mr-vert { display: none !important; }
   #mr-about-grid, #mr-foundation-grid, #mr-contact-grid { grid-template-columns: 1fr !important; }
   #mr-impact-grid { grid-template-columns: 1fr 1fr !important; }
-  #mr-insights-grid { grid-template-columns: 1fr !important; }
+  #mr-insights-grid { grid-template-columns: 1fr 1fr !important; }
 }
 @media (max-width: 600px) {
   #mr-impact-grid, #mr-stats-grid { grid-template-columns: 1fr !important; }
@@ -731,7 +731,7 @@ footer {
       <div class="mr-foundation-eyebrow">Founder &amp; CEO</div>
       <h2 class="mr-foundation-h2">Gutsy Women Foundation</h2>
       <p class="mr-foundation-p">Empowering women and girls through leadership development, advocacy, mentorship, and community transformation, building the next generation of women bold enough to lead.</p>
-      <a href="#contact" class="mr-cta-light">
+      <a href="https://www.gustywomenfoundation.org/donate" target="_blank" rel="noopener noreferrer" class="mr-cta-light">
         Support the mission
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
       </a>
@@ -762,20 +762,16 @@ footer {
     <div data-reveal class="mr-stats-eyebrow">Impact in numbers</div>
     <div id="mr-stats-grid">
       <div data-reveal data-reveal-delay="0" class="mr-stat-item">
-        <div class="mr-stat-num" data-count="5000" data-suffix="+">0</div>
-        <div class="mr-stat-label">Women Reached</div>
+        <div class="mr-stat-num" data-count="35000" data-suffix="+">0</div>
+        <div class="mr-stat-label">Girls connected</div>
       </div>
       <div data-reveal data-reveal-delay="100" class="mr-stat-item">
-        <div class="mr-stat-num" data-count="50" data-suffix="+">0</div>
-        <div class="mr-stat-label">Speaking Engagements</div>
+        <div class="mr-stat-num" data-count="200" data-suffix="+">0</div>
+        <div class="mr-stat-label">Girls mentored</div>
       </div>
       <div data-reveal data-reveal-delay="200" class="mr-stat-item">
-        <div class="mr-stat-num" data-count="100" data-suffix="+">0</div>
-        <div class="mr-stat-label">Published Articles</div>
-      </div>
-      <div data-reveal data-reveal-delay="300" class="mr-stat-item">
-        <div class="mr-stat-num" data-count="10" data-suffix="+">0</div>
-        <div class="mr-stat-label">Advocacy Campaigns</div>
+        <div class="mr-stat-num" data-count="24" data-suffix="">0</div>
+        <div class="mr-stat-label">Mentors engaged</div>
       </div>
     </div>
   </div>
@@ -789,33 +785,61 @@ footer {
         <div class="mr-section-eyebrow">Latest Insights</div>
         <h2 class="mr-section-h2">Writing &amp; analysis</h2>
       </div>
-      <a href="#" class="mr-all-link">
-        All articles
+      <a href="https://www.tiktok.com/@miss_raynelle" target="_blank" rel="noopener noreferrer" class="mr-all-link">
+        More on TikTok
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
       </a>
     </div>
     <div id="mr-insights-grid">
-      <article data-reveal data-reveal-delay="0" class="mr-article">
+      <a data-reveal data-reveal-delay="0" class="mr-article" href="https://vt.tiktok.com/ZSCphBLmC/" target="_blank" rel="noopener noreferrer" data-tiktok="https://vt.tiktok.com/ZSCphBLmC/">
         <div class="mr-article-thumb" style="background:#f1ece3;">
           <span class="mr-article-num" style="color:#d8cbb8;">01</span>
         </div>
-        <div class="mr-article-meta">Advocacy · Mar 2026</div>
-        <h3 class="mr-article-title">Women in Leadership: The Next Frontier</h3>
-      </article>
-      <article data-reveal data-reveal-delay="120" class="mr-article">
+        <div class="mr-article-meta">TikTok</div>
+        <h3 class="mr-article-title">Watch on TikTok</h3>
+      </a>
+      <a data-reveal data-reveal-delay="120" class="mr-article" href="https://vt.tiktok.com/ZSCpBGPee/" target="_blank" rel="noopener noreferrer" data-tiktok="https://vt.tiktok.com/ZSCpBGPee/">
         <div class="mr-article-thumb" style="background:#e7ddcf;">
           <span class="mr-article-num" style="color:#cdbba4;">02</span>
         </div>
-        <div class="mr-article-meta">Political Analysis · Feb 2026</div>
-        <h3 class="mr-article-title">Understanding Modern Political Dynamics</h3>
-      </article>
-      <article data-reveal data-reveal-delay="240" class="mr-article">
+        <div class="mr-article-meta">TikTok</div>
+        <h3 class="mr-article-title">Watch on TikTok</h3>
+      </a>
+      <a data-reveal data-reveal-delay="0" class="mr-article" href="https://vt.tiktok.com/ZSCpBQLtg/" target="_blank" rel="noopener noreferrer" data-tiktok="https://vt.tiktok.com/ZSCpBQLtg/">
         <div class="mr-article-thumb" style="background:#f1ece3;">
           <span class="mr-article-num" style="color:#d8cbb8;">03</span>
         </div>
-        <div class="mr-article-meta">Social Commentary · Jan 2026</div>
-        <h3 class="mr-article-title">Building Inclusive Communities</h3>
-      </article>
+        <div class="mr-article-meta">TikTok</div>
+        <h3 class="mr-article-title">Watch on TikTok</h3>
+      </a>
+      <a data-reveal data-reveal-delay="120" class="mr-article" href="https://vt.tiktok.com/ZSCpBp2eS/" target="_blank" rel="noopener noreferrer" data-tiktok="https://vt.tiktok.com/ZSCpBp2eS/">
+        <div class="mr-article-thumb" style="background:#e7ddcf;">
+          <span class="mr-article-num" style="color:#cdbba4;">04</span>
+        </div>
+        <div class="mr-article-meta">TikTok</div>
+        <h3 class="mr-article-title">Watch on TikTok</h3>
+      </a>
+      <a data-reveal data-reveal-delay="0" class="mr-article" href="https://vt.tiktok.com/ZSCpBnDkh/" target="_blank" rel="noopener noreferrer" data-tiktok="https://vt.tiktok.com/ZSCpBnDkh/">
+        <div class="mr-article-thumb" style="background:#f1ece3;">
+          <span class="mr-article-num" style="color:#d8cbb8;">05</span>
+        </div>
+        <div class="mr-article-meta">TikTok</div>
+        <h3 class="mr-article-title">Watch on TikTok</h3>
+      </a>
+      <a data-reveal data-reveal-delay="120" class="mr-article" href="https://vt.tiktok.com/ZSCpBGfws/" target="_blank" rel="noopener noreferrer" data-tiktok="https://vt.tiktok.com/ZSCpBGfws/">
+        <div class="mr-article-thumb" style="background:#e7ddcf;">
+          <span class="mr-article-num" style="color:#cdbba4;">06</span>
+        </div>
+        <div class="mr-article-meta">TikTok</div>
+        <h3 class="mr-article-title">Watch on TikTok</h3>
+      </a>
+      <a data-reveal data-reveal-delay="0" class="mr-article" href="https://vt.tiktok.com/ZSCpBbrN2/" target="_blank" rel="noopener noreferrer" data-tiktok="https://vt.tiktok.com/ZSCpBbrN2/">
+        <div class="mr-article-thumb" style="background:#f1ece3;">
+          <span class="mr-article-num" style="color:#d8cbb8;">07</span>
+        </div>
+        <div class="mr-article-meta">TikTok</div>
+        <h3 class="mr-article-title">Watch on TikTok</h3>
+      </a>
     </div>
   </div>
 </section>
@@ -1000,6 +1024,31 @@ footer {
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('.mr-stat-num').forEach(el => statObs.observe(el));
+
+  // ---- TikTok insight previews ----
+  // Cards with data-tiktok load the post's cover image and caption via
+  // TikTok's CORS-enabled oEmbed API; placeholder content stays on failure.
+  document.querySelectorAll('[data-tiktok]').forEach(async (card) => {
+    try {
+      const res = await fetch('https://www.tiktok.com/oembed?url=' + encodeURIComponent(card.getAttribute('data-tiktok')));
+      if (!res.ok) return;
+      const d = await res.json();
+      const thumb = card.querySelector('.mr-article-thumb');
+      if (thumb && d.thumbnail_url) {
+        thumb.style.background = 'url("' + d.thumbnail_url + '") center / cover no-repeat';
+        const num = card.querySelector('.mr-article-num');
+        if (num) num.style.display = 'none';
+      }
+      const caption = (d.title || '').replace(/#\S+/g, '').replace(/\s+/g, ' ').trim();
+      if (caption) {
+        const title = card.querySelector('.mr-article-title');
+        if (title) title.textContent = caption.length > 90 ? caption.slice(0, 90).trim() + '…' : caption;
+      }
+      const handle = (d.author_url || '').split('@')[1];
+      const meta = card.querySelector('.mr-article-meta');
+      if (meta && handle) meta.textContent = 'TikTok · @' + handle;
+    } catch (e) { /* keep placeholder */ }
+  });
 
   // ---- Mobile drawer ----
   const drawer = document.getElementById('mr-drawer');
