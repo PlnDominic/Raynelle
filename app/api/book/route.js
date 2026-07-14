@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
 
 // nodemailer needs the Node.js runtime (not edge)
 export const runtime = 'nodejs';
@@ -61,13 +60,6 @@ export async function POST(request) {
     );
   }
 
-  const transporter = nodemailer.createTransport({
-    host,
-    port,
-    secure: port === 465, // true for 465 (SSL), false for 587 (STARTTLS)
-    auth: { user, pass },
-  });
-
   const subject = `New mentorship booking — ${name}`;
   const text = [
     'New one-on-one mentorship booking request',
@@ -96,6 +88,16 @@ export async function POST(request) {
     </div>`;
 
   try {
+    // Import nodemailer lazily so a bundling/load issue surfaces as a handled
+    // error here instead of crashing the whole serverless function.
+    const { default: nodemailer } = await import('nodemailer');
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465, // true for 465 (SSL), false for 587 (STARTTLS)
+      auth: { user, pass },
+    });
+
     await transporter.sendMail({
       from: `"Mentorship Booking" <${user}>`,
       to,
