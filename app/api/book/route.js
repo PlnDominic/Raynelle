@@ -46,11 +46,14 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Your message is a little too long.' }, { status: 400 });
   }
 
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  const host = process.env.SMTP_HOST || 'smtp.gmail.com';
+  // Trim defensively: Google displays app passwords with spaces
+  // ("abcd efgh ijkl mnop") and a stray copy/paste space is a common
+  // cause of "Username and Password not accepted" (EAUTH) failures.
+  const user = (process.env.SMTP_USER || '').trim();
+  const pass = (process.env.SMTP_PASS || '').replace(/\s+/g, '');
+  const host = (process.env.SMTP_HOST || 'smtp.gmail.com').trim();
   const port = Number(process.env.SMTP_PORT || 465);
-  const to = process.env.BOOKING_TO || 'raynelle@gutsywomenfoundation.org';
+  const to = (process.env.BOOKING_TO || 'raynelle@gutsywomenfoundation.org').trim();
 
   if (!user || !pass) {
     console.error('Booking email not configured: missing SMTP_USER / SMTP_PASS');
